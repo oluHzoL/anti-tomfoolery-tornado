@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cum2qic3xal0s"]
+
+[ext_resource type="Script" uid="uid://biselsivaqfc5" path="res://Objects/Tornado/tornado.gd" id="1_qunbj"]
+[ext_resource type="Texture2D" uid="uid://chmtouvwum544" path="res://icon.svg" id="2_8uy3p"]
+[ext_resource type="Script" uid="uid://cethbhqnwusfr" path="res://Objects/Tornado/Mouse/spin_manager.gd" id="2_pa2op"]
+[ext_resource type="Texture2D" uid="uid://c4ohmu4x8rmf6" path="res://Shapes/trianglebottomright.png" id="3_pa2op"]
+[ext_resource type="PackedScene" uid="uid://bxmsdxclint31" path="res://Objects/mouse_checkpoints.tscn" id="4_683b1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uy3p"]
+radius = 60.208
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qunbj"]
+radius = 68.2642
+
+[node name="Tornado" type="CharacterBody2D"]
+slide_on_ceiling = false
+script = ExtResource("1_qunbj")
+
+[node name="SpinManager" type="Node2D" parent="."]
+script = ExtResource("2_pa2op")
+
+[node name="MouseLayer" type="CanvasLayer" parent="SpinManager"]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpinManager/MouseLayer"]
+position = Vector2(200, 0)
+texture = ExtResource("3_pa2op")
+
+[node name="MouseCheckpoints" parent="SpinManager/MouseLayer" instance=ExtResource("4_683b1")]
+
+[node name="MouseArea2D" type="Area2D" parent="SpinManager/MouseLayer"]
+collision_layer = 32768
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpinManager/MouseLayer/MouseArea2D"]
+shape = SubResource("CircleShape2D_8uy3p")
+debug_color = Color(0.273014, 0.631272, 0.0984755, 0.42)
+
+[node name="TornadoSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_8uy3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qunbj")
+
+[node name="BoostCooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="I-Frames" type="Timer" parent="."]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxmsdxclint31"]
+
+[ext_resource type="Script" uid="uid://bcgxb6f42nf3q" path="res://Objects/Tornado/Mouse/mouse_checkpoints.gd" id="1_coxaj"]
+[ext_resource type="Script" uid="uid://d0vqsqbk228" path="res://mouse_ranges.gd" id="1_oqi0c"]
+[ext_resource type="Script" uid="uid://dib4nqfof3rxr" path="res://Objects/Tornado/Mouse/range_object.gd" id="2_r4m2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwf3s"]
+size = Vector2(247, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo3sh"]
+size = Vector2(494, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2rsq"]
+size = Vector2(990, 18)
+
+[node name="MouseCheckpoints" type="Node2D"]
+script = ExtResource("1_coxaj")
+
+[node name="RangeObject" type="Node2D" parent="."]
+script = ExtResource("2_r4m2e")
+
+[node name="Range1" type="Area2D" parent="RangeObject"]
+z_index = 3
+collision_layer = 0
+collision_mask = 32768
+collision_priority = 3.0
+monitorable = false
+priority = 3
+script = ExtResource("1_oqi0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeObject/Range1"]
+position = Vector2(123.5, 0)
+shape = SubResource("RectangleShape2D_dwf3s")
+debug_color = Color(1, 0, 0, 0.839216)
+
+[node name="Range2" type="Area2D" parent="RangeObject"]
+z_index = 2
+collision_layer = 0
+collision_mask = 32768
+collision_priority = 2.0
+monitorable = false
+priority = 2
+script = ExtResource("1_oqi0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeObject/Range2"]
+position = Vector2(247, 0)
+shape = SubResource("RectangleShape2D_vo3sh")
+debug_color = Color(1, 1, 0, 0.631373)
+
+[node name="Range3" type="Area2D" parent="RangeObject"]
+z_index = 1
+collision_layer = 0
+collision_mask = 32768
+monitorable = false
+priority = 1
+script = ExtResource("1_oqi0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeObject/Range3"]
+position = Vector2(495, 0)
+shape = SubResource("RectangleShape2D_p2rsq")
+debug_color = Color(0, 1, 0, 0.419608)

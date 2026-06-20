@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuuc3ibjmfgkh"]
+
+[ext_resource type="PackedScene" uid="uid://cum2qic3xal0s" path="res://Objects/Tornado/tornado.tscn" id="1_wijl4"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Shapes/square.png" id="2_e0an3"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Tornado" parent="." instance=ExtResource("1_wijl4")]
+position = Vector2(-246, -235)
+
+[node name="Camera2D" type="Camera2D" parent="Tornado"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_e0an3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProjectileManager" type="Node2D" parent="."]
