@@ -51,6 +51,10 @@ special={
 
 [layer_names]
 
+2d_physics/layer_2="TornadoHurtbox"
+2d_physics/layer_3="TornadoHitbox"
+2d_physics/layer_4="ObstacleHurtbox"
+2d_physics/layer_5="ObstacleHitbox"
 2d_physics/layer_16="Mouse"
 
 [rendering]

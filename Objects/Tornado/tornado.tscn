@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://biselsivaqfc5" path="res://Objects/Tornado/tornado.gd" id="1_qunbj"]
 [ext_resource type="Texture2D" uid="uid://chmtouvwum544" path="res://icon.svg" id="2_8uy3p"]
 [ext_resource type="Script" uid="uid://cethbhqnwusfr" path="res://Objects/Tornado/Mouse/spin_manager.gd" id="2_pa2op"]
-[ext_resource type="Texture2D" uid="uid://c4ohmu4x8rmf6" path="res://Shapes/trianglebottomright.png" id="3_pa2op"]
-[ext_resource type="PackedScene" uid="uid://bxmsdxclint31" path="res://Objects/mouse_checkpoints.tscn" id="4_683b1"]
+[ext_resource type="Texture2D" uid="uid://c4ohmu4x8rmf6" path="res://Assets/Shapes/trianglebottomright.png" id="3_pa2op"]
+[ext_resource type="PackedScene" uid="uid://bxmsdxclint31" path="res://Objects/Tornado/Mouse/mouse_checkpoints.tscn" id="4_683b1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uy3p"]
 radius = 60.208

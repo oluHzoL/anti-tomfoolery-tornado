@@ -3,9 +3,11 @@ class_name Tornado
 
 enum State{ACTIVE, CHARGING, EXPIRED}
 
+@onready var SpinManager = get_node('SpinManager')
+
 @export var power = 100 # hits zero, you die; determines speed and such
-@export var max_power = 100
-@export var speed = 250 # minimum speed 250
+@export var max_power = 1000
+@export var speed = 500 # minimum speed 250
 @export var acceleration = 800
 @export var deceleration = 800
 
@@ -15,6 +17,17 @@ var move_vector := Vector2.ZERO:
 	set(v):
 		move_vector = v
 		
+var prev_move_vector := Vector2.ZERO
+
+func _ready() -> void:
+	SpinManager.get_node("MouseLayer/MouseCheckpoints").connect("full_circle", add_charge)
+	spawn()
+
+func spawn() -> void:
+	state = State.ACTIVE
+	charge = 0
+	move_vector = Vector2.ZERO
+	SpinManager.process_mode = Node.PROCESS_MODE_DISABLED
 
 func add_power(amount : int):
 	power += amount
@@ -34,13 +47,16 @@ func add_charge(amount : int):
 
 func _process(delta: float) -> void:
 	move_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	# # TODO: deal with diagonal vectors (you'd have to let go of both buttons at once otherwise)
+	if move_vector != Vector2.ZERO: prev_move_vector = move_vector
+	# TODO:
 	# scale speed, size and other things based off of power here
 	# use Node2D.scale for easy size manip
+
 func _physics_process(delta: float) -> void:
 	match state:
 		State.ACTIVE:
-			if move_vector.length(): #???
-				print("hi")
+			if move_vector.length():
 				velocity = velocity.move_toward(move_vector * speed, acceleration * delta)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
@@ -48,6 +64,7 @@ func _physics_process(delta: float) -> void:
 			# State Transition
 			if Input.is_action_pressed("special"):
 				state = State.CHARGING
+				SpinManager.process_mode = Node.PROCESS_MODE_INHERIT
 		
 		State.CHARGING:
 			#print("charging")
@@ -57,7 +74,10 @@ func _physics_process(delta: float) -> void:
 			if !Input.is_action_pressed("special"):
 				state = State.ACTIVE
 				# velocity boost based on charge
-				velocity = move_vector * speed * 2
+				print("Charge: " + str(charge))
+				velocity = prev_move_vector * speed * 5 * (charge / 100)
+				charge = 0
+				SpinManager.process_mode = Node.PROCESS_MODE_DISABLED
 			
 	move_and_slide()
 	
