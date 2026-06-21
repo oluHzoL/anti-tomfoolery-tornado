@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://crjggnu3eicdw"]
+
+[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Projectiles/projectile.gd" id="1_6ricg"]
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_6ricg")
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+
+[node name="ActiveTimer" type="Timer" parent="."]

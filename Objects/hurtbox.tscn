@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dussyf15mesus"]
+
+[ext_resource type="Script" uid="uid://cks4fq6hj87g5" path="res://Objects/hurtbox.gd" id="1_4xbbw"]
+
+[node name="Hurtbox" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_4xbbw")
+
+[node name="I-Frames" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
