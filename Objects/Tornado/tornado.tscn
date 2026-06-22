@@ -1,17 +1,35 @@
-[gd_scene load_steps=14 format=3 uid="uid://cum2qic3xal0s"]
+[gd_scene load_steps=17 format=3 uid="uid://cum2qic3xal0s"]
 
 [ext_resource type="Script" uid="uid://biselsivaqfc5" path="res://Objects/Tornado/tornado.gd" id="1_qunbj"]
 [ext_resource type="Script" uid="uid://cethbhqnwusfr" path="res://Objects/Tornado/Mouse/spin_manager.gd" id="2_pa2op"]
 [ext_resource type="Texture2D" uid="uid://c4ohmu4x8rmf6" path="res://Assets/Shapes/trianglebottomright.png" id="3_pa2op"]
 [ext_resource type="PackedScene" uid="uid://bxmsdxclint31" path="res://Objects/Tornado/Mouse/mouse_checkpoints.tscn" id="4_683b1"]
 [ext_resource type="Texture2D" uid="uid://cdlk0lnmpdlh2" path="res://Assets/Sprites/tornado (1).png" id="5_aonfq"]
-[ext_resource type="Script" uid="uid://csdmhmy2e6o27" path="res://Objects/Tornado/atk_resource_manager.gd" id="6_70qc1"]
+[ext_resource type="Script" uid="uid://csdmhmy2e6o27" path="res://Objects/Tornado/material_attack_manager.gd" id="6_70qc1"]
+[ext_resource type="AudioStream" uid="uid://brdhv45m057ey" path="res://Assets/SFX/Wind_Ambiance.mp3" id="7_5uw53"]
+[ext_resource type="AudioStream" uid="uid://bu2kqu0t2lynn" path="res://Assets/SFX/Wind_Impact.mp3" id="7_635e0"]
 [ext_resource type="AudioStream" uid="uid://dlexdr4ualx2p" path="res://Assets/SFX/dragon-studio-elemental-spell-impact-wind-478376.mp3" id="7_aonfq"]
+[ext_resource type="Script" uid="uid://bk44c7bbdquko" path="res://Objects/Tornado/tornado_sound_manager.gd" id="7_u5g7l"]
 
 [sub_resource type="Curve" id="Curve_aonfq"]
 _limits = [0.0, 5.0, 0.0, 100.0]
 _data = [Vector2(0, 0), 0.0, 0.07, 0, 0, Vector2(100, 5), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Animation" id="Animation_5uw53"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TornadoSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_aonfq"]
 resource_name = "Tornado_Rotate"
@@ -30,21 +48,6 @@ tracks/0/keys = {
 "values": [6.28319, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_5uw53"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../TornadoSprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_635e0"]
 _data = {
 &"RESET": SubResource("Animation_5uw53"),
@@ -58,6 +61,7 @@ radius = 60.208
 radius = 68.2642
 
 [node name="Tornado" type="CharacterBody2D"]
+collision_layer = 128
 slide_on_ceiling = false
 script = ExtResource("1_qunbj")
 charge_scale = SubResource("Curve_aonfq")
@@ -106,6 +110,16 @@ one_shot = true
 script = ExtResource("6_70qc1")
 
 [node name="SoundManager" type="Node2D" parent="."]
+script = ExtResource("7_u5g7l")
+
+[node name="Release" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("7_635e0")
+volume_db = -10.0
+
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("7_5uw53")
+volume_db = -8.0
+autoplay = true
 
 [node name="ChargeNoise" type="AudioStreamPlayer2D" parent="SoundManager"]
 stream = ExtResource("7_aonfq")

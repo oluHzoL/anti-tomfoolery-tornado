@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4btc3xh7mm5f"]
+
+[ext_resource type="Script" uid="uid://hjjpf14fsbyr" path="res://Objects/Attacks/attack.gd" id="1_kit8e"]
+
+[node name="Attack" type="Area2D"]
+script = ExtResource("1_kit8e")
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

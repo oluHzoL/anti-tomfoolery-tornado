@@ -33,6 +33,7 @@ func spawn() -> void:
 	move_vector = Vector2.ZERO
 	SpinManager.process_mode = Node.PROCESS_MODE_DISABLED
 	AnimPlayer.play("Tornado_Rotate")
+	SoundManager.get_node("Ambiance").play()
 
 func add_power(amount : int):
 	power += amount
@@ -50,11 +51,12 @@ func add_charge(amount : int):
 	if charge > 100:
 		charge = 100
 	else:
-		AnimPlayer.speed_scale += 1
+		AnimPlayer.speed_scale += 2
 
 func _process(delta: float) -> void:
 	move_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	# # TODO: deal with diagonal vectors (you'd have to let go of both buttons at once otherwise)
+	# an idea: if within 0.05 seconds the move_vector does not become zero, set prev_move_vector
 	if move_vector != Vector2.ZERO: prev_move_vector = move_vector
 	# TODO:
 	# scale speed, size, anim speed, and other things based off of power here
@@ -73,8 +75,9 @@ func _physics_process(delta: float) -> void:
 				state = State.CHARGING
 				SpinManager.process_mode = Node.PROCESS_MODE_INHERIT
 				
-				# sound
+				# fx
 				SoundManager.get_node("ChargeNoise").play()
+				AnimPlayer.speed_scale = 2
 		
 		State.CHARGING:
 			#print("charging")
@@ -94,8 +97,11 @@ func _physics_process(delta: float) -> void:
 				# fx
 				if charge < 20:
 					SoundManager.get_node("ChargeNoise").stop()
+				else:
+					SoundManager.get_node("Release").play()
 				charge = 0 
 				AnimPlayer.speed_scale = 1
+				
 			
 	move_and_slide()
 	

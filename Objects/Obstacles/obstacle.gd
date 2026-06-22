@@ -6,6 +6,7 @@ enum STATE{ACTIVE, DEAD}
 
 
 @export var max_health : int = 10
+@export var loot_table : MaterialTable
 
 var health : int = max_health
 
@@ -24,4 +25,6 @@ func damage(amount : int) -> void:
 	if health < 0: death()
 
 func death() -> void:
-	pass
+	# disable many things
+	loot_table.drop_loot()
+	# check for spawner; if none exists (which is unusual) then queue free
