@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuuc3ibjmfgkh"]
+[gd_scene load_steps=11 format=3 uid="uid://cuuc3ibjmfgkh"]
 
 [ext_resource type="Script" uid="uid://c6ppmyqr0mt3h" path="res://game_loop.gd" id="1_iw27f"]
 [ext_resource type="PackedScene" uid="uid://cum2qic3xal0s" path="res://Objects/Tornado/tornado.tscn" id="1_wijl4"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://cmlw256r6j5nd" path="res://Objects/Map/attack_manager.gd" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://bke6ukrxmxdvd" path="res://Objects/Map/material_manager.gd" id="4_p5pve"]
 [ext_resource type="Script" uid="uid://b4y0gau3fyeyx" path="res://Objects/Map/obstacle_manager.gd" id="5_urblq"]
+[ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_71pa8"]
+[ext_resource type="Resource" uid="uid://0ps77oiit3vd" path="res://Objects/Obstacles/game_obstacle_index.tres" id="8_05x41"]
+[ext_resource type="Texture2D" uid="uid://cwmmjx43kieop" path="res://Assets/Sprites/jesterconcept.png" id="9_gqbix"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_05x41"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_iw27f")
@@ -24,24 +29,67 @@ texture = ExtResource("2_e0an3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="UI"]
+[node name="MainWindow" type="Control" parent="UI"]
+clip_contents = true
 layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="UpperLeftUI" type="Control" parent="UI/MainWindow"]
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="UI/MainWindow/UpperLeftUI"]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 23.0
+text = "Jesters Left:"
+label_settings = SubResource("LabelSettings_05x41")
+
+[node name="TopRightUI" type="Control" parent="UI/MainWindow"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="UI/MainWindow/TopRightUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BottomLeftUI" type="Control" parent="UI/MainWindow"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="UI/Control"]
-layout_mode = 0
+[node name="BottomRightUI" type="Control" parent="UI/MainWindow"]
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 23.0
-text = "hello mario"
+offset_bottom = 40.0
 
-[node name="AttackManager" type="Node2D" parent="." node_paths=PackedStringArray("Player")]
+[node name="AttackManager" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_e0an3")
-Player = NodePath("../Tornado")
+player = NodePath("../Tornado")
 
 [node name="MaterialManager" type="Node2D" parent="."]
 script = ExtResource("4_p5pve")
+material_dex = ExtResource("6_71pa8")
 
-[node name="ObstacleManager" type="Node2D" parent="."]
+[node name="ObstacleManager" type="Node2D" parent="." node_paths=PackedStringArray("attack_manager", "material_manager")]
 script = ExtResource("5_urblq")
+obstacle_dex = ExtResource("8_05x41")
+attack_manager = NodePath("../AttackManager")
+material_manager = NodePath("../MaterialManager")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(433, -186)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_gqbix")

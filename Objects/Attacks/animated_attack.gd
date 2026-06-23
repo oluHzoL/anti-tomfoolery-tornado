@@ -7,7 +7,6 @@ extends Attack
 
 @export var attack_animation : Animation # in the future, change this to an array that holds any number of these
 
-
 @onready var AttackPlayer : AnimationPlayer = get_node("AttackPlayer")
 
 func launch_attack():

@@ -1,5 +1,6 @@
 extends Resource
+class_name MaterialResource
+
 
 @export var name : StringName
-@export var entity : PackedScene
 @export var attack : PackedScene

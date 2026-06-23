@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dahyhxsem7hhm"]
+[gd_scene load_steps=10 format=3 uid="uid://dahyhxsem7hhm"]
 
 [ext_resource type="Script" uid="uid://bbr5l2wo577jg" path="res://Objects/Obstacles/obstacle.gd" id="1_67nn5"]
 [ext_resource type="Texture2D" uid="uid://c0aqtep5744bl" path="res://Assets/Shapes/circle.png" id="2_8oetf"]
 [ext_resource type="Script" uid="uid://cnhcvcua8bpt6" path="res://Objects/Materials/material_table.gd" id="2_bx8nm"]
 [ext_resource type="PackedScene" uid="uid://dussyf15mesus" path="res://Objects/hurtbox.tscn" id="3_8oetf"]
 [ext_resource type="Script" uid="uid://ceulta1kv3y80" path="res://Objects/Obstacles/spawner.gd" id="5_ouj61"]
+[ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_xdi1y"]
 
 [sub_resource type="Resource" id="Resource_ouj61"]
 script = ExtResource("2_bx8nm")
-rng_weight_table = {
-"Stone": 1,
-"Wood": 2
-}
+drop_list = PackedStringArray()
+rng_weight_table = Dictionary[String, int]({
+"Stone": 1
+})
 metadata/_custom_type_script = "uid://cnhcvcua8bpt6"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8oetf"]
@@ -21,7 +22,10 @@ size = Vector2(64, 64)
 radius = 26.0192
 
 [node name="Obstacle" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_67nn5")
+max_health = 2
 loot_table = SubResource("Resource_ouj61")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -38,3 +42,30 @@ shape = SubResource("CircleShape2D_67nn5")
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("5_ouj61")
+material_dex = ExtResource("6_xdi1y")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HPUIControl" type="Control" parent="."]
+editor_description = "140x60 size"
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = -95.0
+
+[node name="HealthBar" type="ProgressBar" parent="HPUIControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -49.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false

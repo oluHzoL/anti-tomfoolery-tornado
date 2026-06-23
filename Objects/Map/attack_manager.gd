@@ -1,5 +1,7 @@
 extends Node2D
-@export var Player : Tornado # For enemy targeting.
+class_name AttackManager
+
+@export var player : Tornado # For enemy targeting.
 
 # unlike other Manager nodes, each attack frees itself (might be a bad thing, really)
 
@@ -15,7 +17,7 @@ func queue_attack(Attack : PackedScene, attacker : CharacterBody2D, cooldown_tim
 	if is_instance_valid(attacker):
 		#	print(proj is Area2D)
 		if attack_inst is Projectile:
-			pass
+			fire(attack_inst, attacker, is_player)
 		else:
 			pass
 	else:
@@ -29,7 +31,7 @@ func fire(proj : Projectile, shooter : CharacterBody2D, is_player : bool):
 		proj.set_collision_mask_value(4, true)
 		proj.set_collision_mask_value(2, false)
 	else:
-		dir = Player.position - shooter.position
+		dir = player.position - shooter.position
 		proj.set_collision_mask_value(4, false)
 		proj.set_collision_mask_value(2, true)
 	proj.position = shooter.position
@@ -38,7 +40,10 @@ func fire(proj : Projectile, shooter : CharacterBody2D, is_player : bool):
 		proj.set_rotation((atan2(dir.y, dir.x)))
 
 
-func attack(attack_inst : Attack, is_player : bool):
-	pass
+func attack(attack_inst : Attack, attacker : CharacterBody2D, is_player : bool):
+	if is_player:
+		attack_inst.position = get_viewport().get_mouse_position()
+	else:
+		attack_inst.position = player.position
 
 # Here, maybe add special functions like homing, or adding structures.

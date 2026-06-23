@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EntityDex" load_steps=3 format=3 uid="uid://0ps77oiit3vd"]
+
+[ext_resource type="PackedScene" uid="uid://c3yf2k0dfm65" path="res://Objects/Obstacles/stone_obstacle.tscn" id="1_ggh20"]
+[ext_resource type="Script" uid="uid://i7uxqyfe4skn" path="res://Objects/entity_dex.gd" id="1_jpvxb"]
+
+[resource]
+script = ExtResource("1_jpvxb")
+index = Dictionary[String, PackedScene]({
+"Stone": ExtResource("1_ggh20")
+})
+metadata/_custom_type_script = "uid://i7uxqyfe4skn"

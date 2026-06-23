@@ -12,7 +12,7 @@ var direction : Vector2
 
 func _ready() -> void:
 	if projectile_type == PROJECTILE_TYPE.BEAM: pierce = true
-	starting.emit()
+	super()
 
 func _on_area_entered(area):
 	super(area)

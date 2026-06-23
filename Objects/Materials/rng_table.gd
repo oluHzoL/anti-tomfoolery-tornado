@@ -13,7 +13,7 @@ var key_weight_list : Array ## Records the keys and values of [member weight_tab
 var total_weight : int = 0 ## The sum of every weight in [member weight_table] taken from [member weight_list].
 
 ## Contains default keys and their corresponding weight. Keys must be strings and values must be ints.
-@export var rng_weight_table : Dictionary 
+@export var rng_weight_table : Dictionary[String, int]
 ## A duplicate of [member rng_weight_table] that can be changed freely.
 ## [member weight_table] can be reset to [member rng_weight_table]'s dictionary using [method full_reset].
 var weight_table : Dictionary

@@ -25,9 +25,13 @@ func _ready() -> void:
 	attack_active = false
 	set_deferred("visible", false)
 	set_deferred("monitoring", false)
+	connect("area_entered", _on_area_entered)
+	get_node("StartupTimer").connect("timeout", launch_attack)
+	get_node("ActiveTimer").connect("timeout", attack_end)
 	get_node("StartupTimer").start()
 	get_node("StartSound").play()
-	get_node("ActiveTimer").connect("timeout", attack_end)
+	if has_node("MultiHitInterval"): 
+		get_node("MultiHitInterval").connect("timeout", multi_hit_interval)
 	starting.emit()
 
 func launch_attack():
@@ -37,13 +41,27 @@ func launch_attack():
 	set_deferred("visible", true)
 	set_deferred("monitoring", true)
 	get_node("ActiveTimer").start()
-	get_node("ShootSound").play()
+	get_node("AttackSound").play()
 
-
+# Note: attacks (class extensions) that are meant to end should call super() then attack_end()
 func _on_area_entered(area):
 	if attack_active and area is Hurtbox and (area not in targets_hit or multi_hit):
-		area.hit(damage, get_node("HitSound"))
-		targets_hit.append(area)
+		if not area.invulnerable:
+			area.inflict_damage(damage)
+			get_node("HitSound").play()
+			if area not in targets_hit:
+				targets_hit.append(area)
+			if multi_hit:
+				get_node("MultiHitInterval").start()
+
+func multi_hit_interval():
+	for area in targets_hit:
+		if overlaps_area(area) and attack_active:
+			if not area.invulnerable:
+				_on_area_entered(area)
+			else:
+				get_node("MultiHitInterval").start()
+
 
 
 func attack_end(): # Process for when attacks need to "end"

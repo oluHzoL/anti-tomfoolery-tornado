@@ -1,15 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cum2qic3xal0s"]
+[gd_scene load_steps=18 format=3 uid="uid://cum2qic3xal0s"]
 
 [ext_resource type="Script" uid="uid://biselsivaqfc5" path="res://Objects/Tornado/tornado.gd" id="1_qunbj"]
 [ext_resource type="Script" uid="uid://cethbhqnwusfr" path="res://Objects/Tornado/Mouse/spin_manager.gd" id="2_pa2op"]
-[ext_resource type="Texture2D" uid="uid://c4ohmu4x8rmf6" path="res://Assets/Shapes/trianglebottomright.png" id="3_pa2op"]
 [ext_resource type="PackedScene" uid="uid://bxmsdxclint31" path="res://Objects/Tornado/Mouse/mouse_checkpoints.tscn" id="4_683b1"]
 [ext_resource type="Texture2D" uid="uid://cdlk0lnmpdlh2" path="res://Assets/Sprites/tornado (1).png" id="5_aonfq"]
 [ext_resource type="Script" uid="uid://csdmhmy2e6o27" path="res://Objects/Tornado/material_attack_manager.gd" id="6_70qc1"]
-[ext_resource type="AudioStream" uid="uid://brdhv45m057ey" path="res://Assets/SFX/Wind_Ambiance.mp3" id="7_5uw53"]
 [ext_resource type="AudioStream" uid="uid://bu2kqu0t2lynn" path="res://Assets/SFX/Wind_Impact.mp3" id="7_635e0"]
 [ext_resource type="AudioStream" uid="uid://dlexdr4ualx2p" path="res://Assets/SFX/dragon-studio-elemental-spell-impact-wind-478376.mp3" id="7_aonfq"]
 [ext_resource type="Script" uid="uid://bk44c7bbdquko" path="res://Objects/Tornado/tornado_sound_manager.gd" id="7_u5g7l"]
+[ext_resource type="AudioStream" uid="uid://cauwsf71nx1il" path="res://Assets/SFX/408442__wesselorg__wind-blow-mouth.wav" id="8_u5g7l"]
+[ext_resource type="PackedScene" uid="uid://bpaqyai51bvpf" path="res://Objects/Attacks/tornado_attack.tscn" id="10_u5g7l"]
 
 [sub_resource type="Curve" id="Curve_aonfq"]
 _limits = [0.0, 5.0, 0.0, 100.0]
@@ -60,6 +60,9 @@ radius = 60.208
 [sub_resource type="CircleShape2D" id="CircleShape2D_qunbj"]
 radius = 68.2642
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5g7l"]
+radius = 1045.08
+
 [node name="Tornado" type="CharacterBody2D"]
 collision_layer = 128
 slide_on_ceiling = false
@@ -77,11 +80,8 @@ script = ExtResource("2_pa2op")
 
 [node name="MouseLayer" type="CanvasLayer" parent="SpinManager"]
 
-[node name="Sprite2D" type="Sprite2D" parent="SpinManager/MouseLayer"]
-position = Vector2(200, 0)
-texture = ExtResource("3_pa2op")
-
 [node name="MouseCheckpoints" parent="SpinManager/MouseLayer" instance=ExtResource("4_683b1")]
+visible = false
 
 [node name="MouseArea2D" type="Area2D" parent="SpinManager/MouseLayer"]
 collision_layer = 32768
@@ -93,7 +93,7 @@ shape = SubResource("CircleShape2D_8uy3p")
 debug_color = Color(0.273014, 0.631272, 0.0984755, 0.42)
 
 [node name="TornadoSprite" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 texture = ExtResource("5_aonfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -105,6 +105,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="I-Frames" type="Timer" parent="."]
+one_shot = true
 
 [node name="AtkResourceManager" type="Node" parent="."]
 script = ExtResource("6_70qc1")
@@ -117,10 +118,24 @@ stream = ExtResource("7_635e0")
 volume_db = -10.0
 
 [node name="Ambiance" type="AudioStreamPlayer2D" parent="SoundManager"]
-stream = ExtResource("7_5uw53")
-volume_db = -8.0
+stream = ExtResource("8_u5g7l")
+volume_db = 24.0
 autoplay = true
 
 [node name="ChargeNoise" type="AudioStreamPlayer2D" parent="SoundManager"]
 stream = ExtResource("7_aonfq")
 volume_db = -10.0
+
+[node name="TornadoAttack" parent="." instance=ExtResource("10_u5g7l")]
+collision_layer = 4
+collision_mask = 8
+default_radius = 150.0
+
+[node name="Fearbox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fearbox"]
+shape = SubResource("CircleShape2D_u5g7l")
+debug_color = Color(0.814087, 0.408419, 0, 0.42)

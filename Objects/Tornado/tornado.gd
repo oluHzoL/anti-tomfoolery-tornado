@@ -53,6 +53,8 @@ func add_charge(amount : int):
 	else:
 		AnimPlayer.speed_scale += 2
 
+
+
 func _process(delta: float) -> void:
 	move_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	# # TODO: deal with diagonal vectors (you'd have to let go of both buttons at once otherwise)
@@ -61,6 +63,8 @@ func _process(delta: float) -> void:
 	# TODO:
 	# scale speed, size, anim speed, and other things based off of power here
 	# use Node2D.scale for easy size manip
+	
+	# select material attack of choice
 
 func _physics_process(delta: float) -> void:
 	match state:
