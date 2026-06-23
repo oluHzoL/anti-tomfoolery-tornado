@@ -13,6 +13,7 @@ func _ready() -> void:
 func testing() -> void:
 	material_manager.spawn_material("Stone", Vector2i(200, 500))
 	obstacle_manager.spawn_obstacle("Stone", Vector2i(500, 200))
+	obstacle_manager.spawn_obstacle("Jester", Vector2i(-500, -500))
 
 func start_game():
 	testing()

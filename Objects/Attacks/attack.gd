@@ -6,6 +6,7 @@ class_name Attack
 @export var damage : int = 1 ## The amount of damage an attack deals, subtracted from their health
 @export var cooldown : float = 1 ## The amount of time needed (in seconds) before this attack can be used again.
 @export var multi_hit : bool = false ## Decides if a target can be hit by the same attack multiple times.
+@export var knockback_power : int = 0
 
 # might be used in the future for a more sophisticated system
 # for now, gotta use what works
@@ -47,7 +48,7 @@ func launch_attack():
 func _on_area_entered(area):
 	if attack_active and area is Hurtbox and (area not in targets_hit or multi_hit):
 		if not area.invulnerable:
-			area.inflict_damage(damage)
+			area.inflict_damage(damage, global_position, knockback_power)
 			get_node("HitSound").play()
 			if area not in targets_hit:
 				targets_hit.append(area)

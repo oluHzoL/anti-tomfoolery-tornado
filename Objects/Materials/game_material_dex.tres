@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MaterialDex" load_steps=3 format=3 uid="uid://c2s0qh5xt55gq"]
+[gd_resource type="Resource" script_class="EntityDex" load_steps=3 format=3 uid="uid://c2s0qh5xt55gq"]
 
 [ext_resource type="PackedScene" uid="uid://dklmx5uk6u4wg" path="res://Objects/Materials/Stone/stone_material.tscn" id="1_bsnlm"]
 [ext_resource type="Script" uid="uid://i7uxqyfe4skn" path="res://Objects/entity_dex.gd" id="2_avmv4"]

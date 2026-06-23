@@ -1,14 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuuc3ibjmfgkh"]
+[gd_scene load_steps=10 format=3 uid="uid://cuuc3ibjmfgkh"]
 
 [ext_resource type="Script" uid="uid://c6ppmyqr0mt3h" path="res://game_loop.gd" id="1_iw27f"]
 [ext_resource type="PackedScene" uid="uid://cum2qic3xal0s" path="res://Objects/Tornado/tornado.tscn" id="1_wijl4"]
-[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="2_e0an3"]
+[ext_resource type="Texture2D" uid="uid://bxv2x8w7k5dj" path="res://Assets/Sprites/jester_sprite.png" id="3_05x41"]
 [ext_resource type="Script" uid="uid://cmlw256r6j5nd" path="res://Objects/Map/attack_manager.gd" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://bke6ukrxmxdvd" path="res://Objects/Map/material_manager.gd" id="4_p5pve"]
 [ext_resource type="Script" uid="uid://b4y0gau3fyeyx" path="res://Objects/Map/obstacle_manager.gd" id="5_urblq"]
 [ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_71pa8"]
 [ext_resource type="Resource" uid="uid://0ps77oiit3vd" path="res://Objects/Obstacles/game_obstacle_index.tres" id="8_05x41"]
-[ext_resource type="Texture2D" uid="uid://cwmmjx43kieop" path="res://Assets/Sprites/jesterconcept.png" id="9_gqbix"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_05x41"]
 
@@ -25,7 +24,9 @@ position_smoothing_speed = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
-texture = ExtResource("2_e0an3")
+position = Vector2(530.5, -217)
+scale = Vector2(2.515, 1)
+texture = ExtResource("3_05x41")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -88,8 +89,3 @@ script = ExtResource("5_urblq")
 obstacle_dex = ExtResource("8_05x41")
 attack_manager = NodePath("../AttackManager")
 material_manager = NodePath("../MaterialManager")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(433, -186)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("9_gqbix")

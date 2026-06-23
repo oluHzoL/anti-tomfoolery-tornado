@@ -9,6 +9,7 @@ radius = 200.0
 [node name="TornadoAttack" type="Area2D"]
 script = ExtResource("1_v6yqo")
 multi_hit = true
+knockback_power = -400
 metadata/_custom_type_script = "uid://hjjpf14fsbyr"
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]

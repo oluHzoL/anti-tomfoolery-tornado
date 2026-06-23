@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsibyhh0r1jd7"
+path="res://.godot/imported/Splat - Sound Effect (HD).mp3-f6e1ac0ad820febdcf940e72b9ad4fe1.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/Splat - Sound Effect (HD).mp3"
+dest_files=["res://.godot/imported/Splat - Sound Effect (HD).mp3-f6e1ac0ad820febdcf940e72b9ad4fe1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

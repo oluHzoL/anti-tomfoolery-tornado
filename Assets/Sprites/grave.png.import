@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwmmjx43kieop"
-path="res://.godot/imported/jesterconcept.png-f9e08020db0d5ede53cae1bb22ec181f.ctex"
+uid="uid://cttffohw5opdc"
+path="res://.godot/imported/grave.png-27a590bc69ffed71bbaaa23128e1ab00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/jesterconcept.png"
-dest_files=["res://.godot/imported/jesterconcept.png-f9e08020db0d5ede53cae1bb22ec181f.ctex"]
+source_file="res://Assets/Sprites/grave.png"
+dest_files=["res://.godot/imported/grave.png-27a590bc69ffed71bbaaa23128e1ab00.ctex"]
 
 [params]
 
