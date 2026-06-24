@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="EntityDex" load_steps=3 format=3 uid="uid://c2s0qh5xt55gq"]
+[gd_resource type="Resource" script_class="EntityDex" load_steps=7 format=3 uid="uid://c2s0qh5xt55gq"]
 
 [ext_resource type="PackedScene" uid="uid://dklmx5uk6u4wg" path="res://Objects/Materials/Stone/stone_material.tscn" id="1_bsnlm"]
 [ext_resource type="Script" uid="uid://i7uxqyfe4skn" path="res://Objects/entity_dex.gd" id="2_avmv4"]
+[ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="2_i0apr"]
+[ext_resource type="PackedScene" uid="uid://b5rbnwyg16iwy" path="res://Objects/Materials/LightningOrb/lightning_orb.tscn" id="2_qqixk"]
+[ext_resource type="Resource" uid="uid://onxyyolnrcie" path="res://Objects/Materials/Stone/stone.tres" id="3_i0apr"]
+[ext_resource type="Resource" uid="uid://dx7s7en4m3l7o" path="res://Objects/Materials/LightningOrb/lightning_orb.tres" id="4_coloq"]
 
 [resource]
 script = ExtResource("2_avmv4")
 index = Dictionary[String, PackedScene]({
+"Lightning Orb": ExtResource("2_qqixk"),
 "Stone": ExtResource("1_bsnlm")
 })
+mat_array = Array[ExtResource("2_i0apr")]([ExtResource("3_i0apr"), ExtResource("4_coloq")])
 metadata/_custom_type_script = "uid://i7uxqyfe4skn"

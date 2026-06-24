@@ -21,7 +21,9 @@ var move_vector := Vector2.ZERO:
 	set(v):
 		move_vector = v
 		
-var prev_move_vector := Vector2.ZERO
+var prev_move_vector := Vector2(1, 0)
+
+# keybind dict
 
 func _ready() -> void:
 	SpinManager.get_node("MouseLayer/MouseCheckpoints").connect("full_circle", add_charge)
@@ -53,7 +55,8 @@ func add_charge(amount : int):
 	else:
 		AnimPlayer.speed_scale += 2
 
-
+func change_equip(index : int):
+	pass
 
 func _process(delta: float) -> void:
 	move_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -65,6 +68,7 @@ func _process(delta: float) -> void:
 	# use Node2D.scale for easy size manip
 	
 	# select material attack of choice
+	
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -74,6 +78,12 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 			
+			
+			if Input.is_action_just_pressed("use_attack"):
+				# come up with more elegant regions some day
+				var region = Rect2(-1700, -800, 1700 * 2, 800 * 2)
+				if region.has_point(get_local_mouse_position()):
+					get_node("MaterialAttackManager").use_attack() # add a safeguard for clicking on UI
 			# State Transition
 			if Input.is_action_pressed("special"):
 				state = State.CHARGING
@@ -82,6 +92,7 @@ func _physics_process(delta: float) -> void:
 				# fx
 				SoundManager.get_node("ChargeNoise").play()
 				AnimPlayer.speed_scale = 2
+			
 		
 		State.CHARGING:
 			#print("charging")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq11jvib2pvqw"]
+
+[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/projectile.gd" id="1_2r1v2"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="2_cl0y5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r1v2"]
+size = Vector2(99, 20)
+
+[node name="StickThrow" type="Area2D"]
+script = ExtResource("1_2r1v2")
+speed = 3000
+pierce = true
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.456652, 0.239529, 0, 1)
+scale = Vector2(1, 0.2)
+texture = ExtResource("2_cl0y5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_2r1v2")
+debug_color = Color(1, 0, 0, 0.419608)

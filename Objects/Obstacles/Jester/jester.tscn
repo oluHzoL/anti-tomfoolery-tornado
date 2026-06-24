@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dff3hfo011on" path="res://Objects/Obstacles/Jester/jester.gd" id="1_gho52"]
 [ext_resource type="Texture2D" uid="uid://bxv2x8w7k5dj" path="res://Assets/Sprites/jester_sprite.png" id="2_a64qr"]
-[ext_resource type="PackedScene" uid="uid://dussyf15mesus" path="res://Objects/hurtbox.tscn" id="3_wi485"]
+[ext_resource type="PackedScene" uid="uid://dussyf15mesus" path="res://Objects/Obstacles/hurtbox.tscn" id="3_wi485"]
 [ext_resource type="Script" uid="uid://ceulta1kv3y80" path="res://Objects/Obstacles/spawner.gd" id="4_jw4we"]
 [ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="5_x4fyu"]
 [ext_resource type="AnimationLibrary" uid="uid://dtnnmkbgnhi22" path="res://Assets/Animations/jester_deaths.res" id="6_e8uo7"]
@@ -29,6 +29,7 @@ texture = ExtResource("2_a64qr")
 [node name="Hurtbox" parent="." instance=ExtResource("3_wi485")]
 collision_mask = 256
 monitoring = true
+i_frame_length = 0.2
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
 visible = false

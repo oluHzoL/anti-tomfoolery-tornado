@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bbr5l2wo577jg" path="res://Objects/Obstacles/obstacle.gd" id="1_67nn5"]
 [ext_resource type="Texture2D" uid="uid://c0aqtep5744bl" path="res://Assets/Shapes/circle.png" id="2_8oetf"]
 [ext_resource type="Script" uid="uid://cnhcvcua8bpt6" path="res://Objects/Materials/material_table.gd" id="2_bx8nm"]
-[ext_resource type="PackedScene" uid="uid://dussyf15mesus" path="res://Objects/hurtbox.tscn" id="3_8oetf"]
+[ext_resource type="PackedScene" uid="uid://dussyf15mesus" path="res://Objects/Obstacles/hurtbox.tscn" id="3_8oetf"]
 [ext_resource type="Script" uid="uid://ceulta1kv3y80" path="res://Objects/Obstacles/spawner.gd" id="5_ouj61"]
 [ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_xdi1y"]
 

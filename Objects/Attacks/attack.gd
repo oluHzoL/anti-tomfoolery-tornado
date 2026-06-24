@@ -72,6 +72,7 @@ func attack_end(): # Process for when attacks need to "end"
 	set_deferred("monitoring", false)
 	if get_node("HitSound").playing:
 		await get_node("HitSound").finished
-		queue_free()
-	else:
-		queue_free()
+	if get_node("AttackSound").playing:
+		await get_node("AttackSound").finished
+	ended.emit()
+	queue_free()

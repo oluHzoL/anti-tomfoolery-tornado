@@ -65,6 +65,7 @@ func checkpoint_hit(range_obj : RangeObject) -> void:
 			previous_checkpoint = null
 			return
 	checkpoints_hit += 1
+	range_obj.boost_given = true
 	previous_checkpoint = range_obj
 	total_boost_bonus += range_obj.boost_bonus
 	print("Checkpoints hit: " + str(checkpoints_hit))

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsqwhxxyc66tq"]
+
+[ext_resource type="Script" uid="uid://c8roct8oxence" path="res://Objects/Attacks/LightningStrike/lightning_strike.gd" id="1_psfl5"]
+[ext_resource type="AudioStream" uid="uid://doojlo5tq50jf" path="res://Assets/SFX/649360__sonofxaudio__sword_thunder01.wav" id="2_psfl5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g84sr"]
+radius = 400.0
+
+[node name="LightningStrike" type="Area2D"]
+script = ExtResource("1_psfl5")
+damage = 4
+knockback_power = 1000
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_psfl5")
+max_distance = 4000.0
+attenuation = 0.1
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="MultiHitInterval" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g84sr")
+debug_color = Color(1, 0, 0, 0.419608)

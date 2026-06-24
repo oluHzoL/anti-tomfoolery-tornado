@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://f60b5e2vntto"]
+
+[ext_resource type="FontFile" uid="uid://bj286dio37yph" path="res://Assets/UI/june-gloom-font/Junegloom-P1jg.ttf" id="1_pqbjq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_05x41"]
+font = ExtResource("1_pqbjq")
+font_size = 64
+
+[node name="GameplayUI" type="Control"]
+process_mode = 1
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="UpperLeftUI" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 180.0
+
+[node name="TimeLeftLabel" type="Label" parent="UpperLeftUI"]
+layout_mode = 2
+text = "Time left:"
+label_settings = SubResource("LabelSettings_05x41")
+clip_text = true
+
+[node name="JesterCountLabel" type="Label" parent="UpperLeftUI"]
+layout_mode = 2
+text = "Jesters Left:"
+label_settings = SubResource("LabelSettings_05x41")
+clip_text = true
+
+[node name="TopRightUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="PauseButton" type="Button" parent="TopRightUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BottomLeftUI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BottomRightUI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

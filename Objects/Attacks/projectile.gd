@@ -20,4 +20,5 @@ func _on_area_entered(area):
 		attack_end()
 
 func _physics_process(delta):
-	position += speed * direction * delta
+	if attack_active:
+		position += speed * direction * delta

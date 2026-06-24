@@ -8,6 +8,8 @@ var jester_count : int = 0
 @export var attack_manager : AttackManager
 @export var material_manager : MaterialManager # for drops
 
+signal all_jesters_killed()
+
 func spawn_obstacle(obstacle_name : String, coordinates : Vector2i):
 	var obstacle = obstacle_dex.index[obstacle_name].instantiate()
 	if obstacle is not Obstacle:
@@ -27,4 +29,6 @@ func remove_obstacle(obstacle : Obstacle) -> void:
 	obstacle_count -= 1
 	if obstacle is Jester: jester_count -= 1
 	obstacle.queue_free()
+	if jester_count == 0:
+		all_jesters_killed.emit(true)
 	# if jester, remove jester count

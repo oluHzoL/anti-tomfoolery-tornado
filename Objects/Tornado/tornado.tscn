@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://cum2qic3xal0s"]
+[gd_scene load_steps=21 format=3 uid="uid://cum2qic3xal0s"]
 
 [ext_resource type="Script" uid="uid://biselsivaqfc5" path="res://Objects/Tornado/tornado.gd" id="1_qunbj"]
 [ext_resource type="Script" uid="uid://cethbhqnwusfr" path="res://Objects/Tornado/Mouse/spin_manager.gd" id="2_pa2op"]
 [ext_resource type="PackedScene" uid="uid://bxmsdxclint31" path="res://Objects/Tornado/Mouse/mouse_checkpoints.tscn" id="4_683b1"]
 [ext_resource type="Texture2D" uid="uid://cdlk0lnmpdlh2" path="res://Assets/Sprites/tornado (1).png" id="5_aonfq"]
+[ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_1g62r"]
 [ext_resource type="Script" uid="uid://csdmhmy2e6o27" path="res://Objects/Tornado/material_attack_manager.gd" id="6_70qc1"]
 [ext_resource type="AudioStream" uid="uid://bu2kqu0t2lynn" path="res://Assets/SFX/Wind_Impact.mp3" id="7_635e0"]
 [ext_resource type="AudioStream" uid="uid://dlexdr4ualx2p" path="res://Assets/SFX/dragon-studio-elemental-spell-impact-wind-478376.mp3" id="7_aonfq"]
+[ext_resource type="PackedScene" uid="uid://dq11jvib2pvqw" path="res://Objects/Attacks/stick_throw.tscn" id="7_gah8r"]
 [ext_resource type="Script" uid="uid://bk44c7bbdquko" path="res://Objects/Tornado/tornado_sound_manager.gd" id="7_u5g7l"]
 [ext_resource type="AudioStream" uid="uid://cauwsf71nx1il" path="res://Assets/SFX/408442__wesselorg__wind-blow-mouth.wav" id="8_u5g7l"]
 [ext_resource type="PackedScene" uid="uid://bpaqyai51bvpf" path="res://Objects/Attacks/tornado_attack.tscn" id="10_u5g7l"]
@@ -82,7 +84,6 @@ script = ExtResource("2_pa2op")
 [node name="MouseLayer" type="CanvasLayer" parent="SpinManager"]
 
 [node name="MouseCheckpoints" parent="SpinManager/MouseLayer" instance=ExtResource("4_683b1")]
-visible = false
 
 [node name="MouseArea2D" type="Area2D" parent="SpinManager/MouseLayer"]
 collision_layer = 32768
@@ -108,8 +109,14 @@ one_shot = true
 [node name="I-Frames" type="Timer" parent="."]
 one_shot = true
 
-[node name="AtkResourceManager" type="Node" parent="."]
+[node name="MaterialAttackManager" type="Node" parent="."]
 script = ExtResource("6_70qc1")
+material_dex = ExtResource("6_1g62r")
+DEBUG_ATTACK = ExtResource("7_gah8r")
+
+[node name="CooldownTimer" type="Timer" parent="MaterialAttackManager"]
+process_callback = 0
+one_shot = true
 
 [node name="SoundManager" type="Node2D" parent="."]
 script = ExtResource("7_u5g7l")
@@ -133,6 +140,7 @@ collision_mask = 8
 default_radius = 150.0
 
 [node name="Fearbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 256
 collision_mask = 8
 monitoring = false

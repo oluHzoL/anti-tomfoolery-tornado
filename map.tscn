@@ -1,24 +1,32 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuuc3ibjmfgkh"]
+[gd_scene load_steps=13 format=3 uid="uid://cuuc3ibjmfgkh"]
 
 [ext_resource type="Script" uid="uid://c6ppmyqr0mt3h" path="res://game_loop.gd" id="1_iw27f"]
 [ext_resource type="PackedScene" uid="uid://cum2qic3xal0s" path="res://Objects/Tornado/tornado.tscn" id="1_wijl4"]
 [ext_resource type="Texture2D" uid="uid://bxv2x8w7k5dj" path="res://Assets/Sprites/jester_sprite.png" id="3_05x41"]
 [ext_resource type="Script" uid="uid://cmlw256r6j5nd" path="res://Objects/Map/attack_manager.gd" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://bke6ukrxmxdvd" path="res://Objects/Map/material_manager.gd" id="4_p5pve"]
+[ext_resource type="PackedScene" uid="uid://f60b5e2vntto" path="res://UI/gameplay_ui.tscn" id="4_sb2pt"]
+[ext_resource type="PackedScene" uid="uid://bevu46j1q7j1d" path="res://UI/pause_menu.tscn" id="5_0t07s"]
 [ext_resource type="Script" uid="uid://b4y0gau3fyeyx" path="res://Objects/Map/obstacle_manager.gd" id="5_urblq"]
 [ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_71pa8"]
 [ext_resource type="Resource" uid="uid://0ps77oiit3vd" path="res://Objects/Obstacles/game_obstacle_index.tres" id="8_05x41"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="9_gqbix"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_05x41"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqbix"]
+size = Vector2(20, 40000)
 
-[node name="Map" type="Node2D"]
+[node name="GameplayNode" type="Node2D"]
 script = ExtResource("1_iw27f")
 
 [node name="Tornado" parent="." instance=ExtResource("1_wijl4")]
-position = Vector2(-246, -235)
 
 [node name="Camera2D" type="Camera2D" parent="Tornado"]
 zoom = Vector2(0.5, 0.5)
+limit_left = -20000
+limit_top = -20000
+limit_right = 20000
+limit_bottom = 20000
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
@@ -29,56 +37,17 @@ scale = Vector2(2.515, 1)
 texture = ExtResource("3_05x41")
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 
-[node name="MainWindow" type="Control" parent="UI"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="GameplayUI" parent="UI" instance=ExtResource("4_sb2pt")]
 
-[node name="UpperLeftUI" type="Control" parent="UI/MainWindow"]
-anchors_preset = 0
-offset_right = 300.0
-offset_bottom = 100.0
-
-[node name="Label" type="Label" parent="UI/MainWindow/UpperLeftUI"]
-layout_mode = 0
-offset_right = 88.0
-offset_bottom = 23.0
-text = "Jesters Left:"
-label_settings = SubResource("LabelSettings_05x41")
-
-[node name="TopRightUI" type="Control" parent="UI/MainWindow"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -150.0
-offset_bottom = 150.0
-grow_horizontal = 0
-
-[node name="Button" type="Button" parent="UI/MainWindow/TopRightUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BottomLeftUI" type="Control" parent="UI/MainWindow"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BottomRightUI" type="Control" parent="UI/MainWindow"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PauseMenu" parent="UI" instance=ExtResource("5_0t07s")]
 
 [node name="AttackManager" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_e0an3")
 player = NodePath("../Tornado")
+
+[node name="MeleeAttackNode" type="Node2D" parent="AttackManager"]
 
 [node name="MaterialManager" type="Node2D" parent="."]
 script = ExtResource("4_p5pve")
@@ -89,3 +58,49 @@ script = ExtResource("5_urblq")
 obstacle_dex = ExtResource("8_05x41")
 attack_manager = NodePath("../AttackManager")
 material_manager = NodePath("../MaterialManager")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 200.0
+one_shot = true
+
+[node name="MapNode" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="MapNode"]
+self_modulate = Color(0, 0.627451, 0, 1)
+scale = Vector2(400, 400)
+texture = ExtResource("9_gqbix")
+
+[node name="WallEast" type="StaticBody2D" parent="MapNode"]
+position = Vector2(20000, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapNode/WallEast"]
+shape = SubResource("RectangleShape2D_gqbix")
+debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)
+
+[node name="WallWest" type="StaticBody2D" parent="MapNode"]
+position = Vector2(-20000, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapNode/WallWest"]
+shape = SubResource("RectangleShape2D_gqbix")
+debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)
+
+[node name="WallSouth" type="StaticBody2D" parent="MapNode"]
+position = Vector2(0, 20000)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapNode/WallSouth"]
+shape = SubResource("RectangleShape2D_gqbix")
+debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)
+
+[node name="WallNorth" type="StaticBody2D" parent="MapNode"]
+position = Vector2(0, -20000)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapNode/WallNorth"]
+shape = SubResource("RectangleShape2D_gqbix")
+debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)

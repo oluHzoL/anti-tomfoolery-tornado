@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="MaterialResource" load_steps=2 format=3 uid="uid://onxyyolnrcie"]
+[gd_resource type="Resource" script_class="MaterialResource" load_steps=3 format=3 uid="uid://onxyyolnrcie"]
 
 [ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="1_ecvpw"]
+[ext_resource type="PackedScene" uid="uid://b3fg5w5btc1u" path="res://Objects/Attacks/rock_throw.tscn" id="1_rb8vu"]
 
 [resource]
 script = ExtResource("1_ecvpw")
 name = &"Stone"
+attack = ExtResource("1_rb8vu")
 metadata/_custom_type_script = "uid://dmtcp5gc4oyfn"

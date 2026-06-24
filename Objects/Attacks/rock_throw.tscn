@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3fg5w5btc1u"]
+
+[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/projectile.gd" id="1_tsgg2"]
+[ext_resource type="Texture2D" uid="uid://c0aqtep5744bl" path="res://Assets/Shapes/circle.png" id="2_ba3ks"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7f2j3"]
+radius = 43.6807
+
+[node name="RockThrow" type="Area2D"]
+script = ExtResource("1_tsgg2")
+speed = 1500
+damage = 2
+knockback_power = 500
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.354728, 0.389799, 0.374673, 1)
+texture = ExtResource("2_ba3ks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7f2j3")
+debug_color = Color(1, 0, 0, 0.419608)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy6mer86p8u3d"]
+
+[ext_resource type="Script" uid="uid://bn1s31cp3rshi" path="res://Objects/Attacks/melee_attack.gd" id="1_ind8n"]
+
+[node name="MeleeAttack" type="Area2D"]
+script = ExtResource("1_ind8n")
+
+[node name="RangeIndicator" type="Marker2D" parent="."]
+position = Vector2(250, 0)
+
+[node name="AttackPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

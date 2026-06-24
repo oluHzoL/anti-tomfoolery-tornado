@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ygac4pnr74m7" path="res://Assets/SFX/658431__deathbyfairydust__pop.wav" id="4_pvrw0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brtmi"]
-radius = 60.1332
+radius = 60.0
 
 [node name="StoneMaterial" type="CharacterBody2D"]
 collision_layer = 0

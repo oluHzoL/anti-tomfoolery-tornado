@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1x8pfmyi23wb"]
+
+[ext_resource type="Script" uid="uid://c4ey0pqrv40gb" path="res://Objects/Attacks/WoodSlap/wood_slap.gd" id="1_b2v1x"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="2_yq1y2"]
+
+[sub_resource type="Animation" id="Animation_miksa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2yg77"]
+resource_name = "wood_attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.785398, 0.785398]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qy47"]
+_data = {
+&"RESET": SubResource("Animation_miksa"),
+&"wood_attack": SubResource("Animation_2yg77")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mp8xo"]
+radius = 18.0
+height = 116.0
+
+[node name="WoodSlap" type="Area2D"]
+script = ExtResource("1_b2v1x")
+attack_animation = "wood_attack"
+damage = 4
+knockback_power = 500
+
+[node name="RangeIndicator" type="Marker2D" parent="."]
+position = Vector2(250, 0)
+
+[node name="AttackPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1qy47")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(250, 0)
+texture = ExtResource("2_yq1y2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(250, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mp8xo")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartupTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

@@ -66,7 +66,7 @@ func give_boost(_area : Area2D) -> void:
 		elif count == 1:
 			boost_bonus = BOOST3 # boost lvl 3
 		emit_signal("checkpoint_hit", self)
-	boost_given = true
+		#boost_given = true
 	# TODO: depending on direction, make some neighbor valid
 
 func increment(_area : Area2D) -> void:
