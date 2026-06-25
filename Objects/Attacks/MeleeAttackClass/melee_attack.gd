@@ -4,7 +4,6 @@ class_name MeleeAttack
 # but is generally an attack that relies on an AnimationPlayer
 # note that these kinds of attacks will still be rotated like any projectile 
 
-var attacker : CharacterBody2D
 
 @export var start_animation : String = ""
 @export var attack_animation : String # in the future, change this to an array that holds any number of these

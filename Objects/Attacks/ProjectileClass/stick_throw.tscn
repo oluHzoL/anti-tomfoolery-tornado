@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq11jvib2pvqw"]
 
-[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/projectile.gd" id="1_2r1v2"]
-[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="2_cl0y5"]
+[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/ProjectileClass/projectile.gd" id="1_2r1v2"]
+[ext_resource type="Texture2D" uid="uid://b1ddwyr240nyu" path="res://Assets/Sprites/stick.png" id="2_7daui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r1v2"]
 size = Vector2(99, 20)
@@ -25,9 +25,8 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.456652, 0.239529, 0, 1)
-scale = Vector2(1, 0.2)
-texture = ExtResource("2_cl0y5")
+texture_filter = 1
+texture = ExtResource("2_7daui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

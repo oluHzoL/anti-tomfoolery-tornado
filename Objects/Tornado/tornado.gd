@@ -6,6 +6,7 @@ enum State{ACTIVE, CHARGING, EXPIRED}
 @onready var SpinManager = get_node('SpinManager')
 @onready var SoundManager = get_node('SoundManager')
 @onready var AnimPlayer : AnimationPlayer = get_node('AnimationPlayer') # there will probably be a single animation
+@onready var tornado_attack : TornadoAttack = get_node('TornadoAttack')
 
 @export var power = 100 # hits zero, you die; determines speed and such
 @export var max_power = 1000
@@ -54,9 +55,7 @@ func add_charge(amount : int):
 		charge = 100
 	else:
 		AnimPlayer.speed_scale += 2
-
-func change_equip(index : int):
-	pass
+		tornado_attack.add_radius(130)
 
 func _process(delta: float) -> void:
 	move_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -105,14 +104,15 @@ func _physics_process(delta: float) -> void:
 				print("Charge: " + str(charge))
 				print("Scale: " + str(charge_scale.sample(charge)))
 				print("Boost Velocity: " + str(prev_move_vector * speed * charge_scale.sample(charge)))
-				velocity = prev_move_vector * speed * charge_scale.sample(charge)
-				
+				if charge > 20:
+					velocity = prev_move_vector * speed * charge_scale.sample(charge)
 				SpinManager.process_mode = Node.PROCESS_MODE_DISABLED
+				tornado_attack.reset_radius()
 				
-				# fx
-				if charge < 20:
-					SoundManager.get_node("ChargeNoise").stop()
-				else:
+				
+				SoundManager.get_node("ChargeNoise").stop()
+				if charge > 20:
+					tornado_attack.charge_bonus(charge)
 					SoundManager.get_node("Release").play()
 				charge = 0 
 				AnimPlayer.speed_scale = 1

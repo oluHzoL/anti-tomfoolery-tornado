@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="EntityDex" load_steps=5 format=3 uid="uid://0ps77oiit3vd"]
+[gd_resource type="Resource" script_class="EntityDex" load_steps=6 format=3 uid="uid://0ps77oiit3vd"]
 
-[ext_resource type="PackedScene" uid="uid://c3yf2k0dfm65" path="res://Objects/Obstacles/stone_obstacle.tscn" id="1_ggh20"]
 [ext_resource type="Script" uid="uid://i7uxqyfe4skn" path="res://Objects/entity_dex.gd" id="1_jpvxb"]
+[ext_resource type="PackedScene" uid="uid://c3yf2k0dfm65" path="res://Objects/Obstacles/Stone/stone_obstacle.tscn" id="2_kq6sj"]
 [ext_resource type="PackedScene" uid="uid://ddybv068lb8g6" path="res://Objects/Obstacles/Jester/jester.tscn" id="2_tefda"]
 [ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="3_301x4"]
+[ext_resource type="PackedScene" uid="uid://bna1u7kje1oct" path="res://Objects/Obstacles/Tree/tree.tscn" id="3_xd6o6"]
 
 [resource]
 script = ExtResource("1_jpvxb")
 index = Dictionary[String, PackedScene]({
 "Jester": ExtResource("2_tefda"),
-"Stone": ExtResource("1_ggh20")
+"Stone": ExtResource("2_kq6sj"),
+"Tree": ExtResource("3_xd6o6")
 })
 mat_array = Array[ExtResource("3_301x4")]([])
 metadata/_custom_type_script = "uid://i7uxqyfe4skn"

@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuuc3ibjmfgkh"]
+[gd_scene load_steps=12 format=3 uid="uid://cuuc3ibjmfgkh"]
 
 [ext_resource type="Script" uid="uid://c6ppmyqr0mt3h" path="res://game_loop.gd" id="1_iw27f"]
 [ext_resource type="PackedScene" uid="uid://cum2qic3xal0s" path="res://Objects/Tornado/tornado.tscn" id="1_wijl4"]
-[ext_resource type="Texture2D" uid="uid://bxv2x8w7k5dj" path="res://Assets/Sprites/jester_sprite.png" id="3_05x41"]
 [ext_resource type="Script" uid="uid://cmlw256r6j5nd" path="res://Objects/Map/attack_manager.gd" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://bke6ukrxmxdvd" path="res://Objects/Map/material_manager.gd" id="4_p5pve"]
 [ext_resource type="PackedScene" uid="uid://f60b5e2vntto" path="res://UI/gameplay_ui.tscn" id="4_sb2pt"]
@@ -13,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="9_gqbix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gqbix"]
-size = Vector2(20, 40000)
+size = Vector2(20, 20000)
 
 [node name="GameplayNode" type="Node2D"]
 script = ExtResource("1_iw27f")
@@ -22,32 +21,29 @@ script = ExtResource("1_iw27f")
 
 [node name="Camera2D" type="Camera2D" parent="Tornado"]
 zoom = Vector2(0.5, 0.5)
-limit_left = -20000
-limit_top = -20000
-limit_right = 20000
-limit_bottom = 20000
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 10000
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 3
-position = Vector2(530.5, -217)
-scale = Vector2(2.515, 1)
-texture = ExtResource("3_05x41")
+[node name="Pointers" type="Node2D" parent="Tornado"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="GameplayUI" parent="UI" instance=ExtResource("4_sb2pt")]
+[node name="GameplayUI" parent="UI" node_paths=PackedStringArray("obstacle_manager", "tornado", "game_timer") instance=ExtResource("4_sb2pt")]
+obstacle_manager = NodePath("../../ObstacleManager")
+tornado = NodePath("../../Tornado")
+game_timer = NodePath("../../Timer")
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("5_0t07s")]
 
 [node name="AttackManager" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_e0an3")
 player = NodePath("../Tornado")
-
-[node name="MeleeAttackNode" type="Node2D" parent="AttackManager"]
 
 [node name="MaterialManager" type="Node2D" parent="."]
 script = ExtResource("4_p5pve")
@@ -62,17 +58,20 @@ material_manager = NodePath("../MaterialManager")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 200.0
 one_shot = true
+autostart = true
 
 [node name="MapNode" type="Node2D" parent="."]
 z_index = -1
 
-[node name="Sprite2D" type="Sprite2D" parent="MapNode"]
+[node name="Field" type="Sprite2D" parent="MapNode"]
 self_modulate = Color(0, 0.627451, 0, 1)
-scale = Vector2(400, 400)
+scale = Vector2(200, 200)
 texture = ExtResource("9_gqbix")
 
+[node name="Decoration" type="Node2D" parent="MapNode/Field"]
+
 [node name="WallEast" type="StaticBody2D" parent="MapNode"]
-position = Vector2(20000, 0)
+position = Vector2(10000, 0)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapNode/WallEast"]
@@ -80,7 +79,7 @@ shape = SubResource("RectangleShape2D_gqbix")
 debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)
 
 [node name="WallWest" type="StaticBody2D" parent="MapNode"]
-position = Vector2(-20000, 0)
+position = Vector2(-10000, 0)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapNode/WallWest"]
@@ -88,7 +87,7 @@ shape = SubResource("RectangleShape2D_gqbix")
 debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)
 
 [node name="WallSouth" type="StaticBody2D" parent="MapNode"]
-position = Vector2(0, 20000)
+position = Vector2(0, 10000)
 rotation = 1.5708
 collision_mask = 0
 
@@ -97,7 +96,7 @@ shape = SubResource("RectangleShape2D_gqbix")
 debug_color = Color(0.541099, 0.540673, 0.480262, 0.42)
 
 [node name="WallNorth" type="StaticBody2D" parent="MapNode"]
-position = Vector2(0, -20000)
+position = Vector2(0, -10000)
 rotation = 1.5708
 collision_mask = 0
 

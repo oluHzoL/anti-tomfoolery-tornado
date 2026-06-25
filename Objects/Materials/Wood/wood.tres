@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaterialResource" load_steps=3 format=3 uid="uid://du4rxbb3n8kvr"]
+
+[ext_resource type="PackedScene" uid="uid://dq11jvib2pvqw" path="res://Objects/Attacks/ProjectileClass/stick_throw.tscn" id="1_a7m65"]
+[ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="2_1aqe3"]
+
+[resource]
+script = ExtResource("2_1aqe3")
+name = &"Wood"
+attack = ExtResource("1_a7m65")
+metadata/_custom_type_script = "uid://dmtcp5gc4oyfn"

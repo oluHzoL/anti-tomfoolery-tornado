@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1x8pfmyi23wb"]
 
-[ext_resource type="Script" uid="uid://c4ey0pqrv40gb" path="res://Objects/Attacks/WoodSlap/wood_slap.gd" id="1_b2v1x"]
+[ext_resource type="Script" uid="uid://c4ey0pqrv40gb" path="res://Objects/Attacks/MeleeAttackClass/WoodSlap/wood_slap.gd" id="1_b2v1x"]
 [ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="2_yq1y2"]
 
 [sub_resource type="Animation" id="Animation_miksa"]

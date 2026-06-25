@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddybv068lb8g6"]
+[gd_scene load_steps=12 format=3 uid="uid://ddybv068lb8g6"]
 
 [ext_resource type="Script" uid="uid://dff3hfo011on" path="res://Objects/Obstacles/Jester/jester.gd" id="1_gho52"]
 [ext_resource type="Texture2D" uid="uid://bxv2x8w7k5dj" path="res://Assets/Sprites/jester_sprite.png" id="2_a64qr"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://ceulta1kv3y80" path="res://Objects/Obstacles/spawner.gd" id="4_jw4we"]
 [ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="5_x4fyu"]
 [ext_resource type="AnimationLibrary" uid="uid://dtnnmkbgnhi22" path="res://Assets/Animations/jester_deaths.res" id="6_e8uo7"]
+[ext_resource type="Script" uid="uid://c5i655lf32f0s" path="res://Objects/Obstacles/Jester/death_anim_handler.gd" id="6_pq1l8"]
+[ext_resource type="Script" uid="uid://bqxcgeoeimrt" path="res://Objects/Materials/rng_table.gd" id="7_45m2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gngfx"]
 size = Vector2(128, 128)
@@ -13,9 +15,18 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klcse"]
 size = Vector2(100, 100)
 
+[sub_resource type="Resource" id="Resource_6ejen"]
+script = ExtResource("7_45m2x")
+rng_weight_table = Dictionary[String, int]({
+"jester_death_0": 5,
+"jester_death_1": 5,
+"jester_death_2": 1,
+"jester_death_3": 1
+})
+metadata/_custom_type_script = "uid://bqxcgeoeimrt"
+
 [node name="Jester" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 0
 script = ExtResource("1_gho52")
 max_health = 6
 knockback_enabled = true
@@ -71,6 +82,8 @@ grow_vertical = 2
 show_percentage = false
 
 [node name="DeathAnimHandler" type="Node2D" parent="."]
+script = ExtResource("6_pq1l8")
+random_death = SubResource("Resource_6ejen")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DeathAnimHandler"]
 root_node = NodePath("../..")

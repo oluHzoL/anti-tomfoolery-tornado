@@ -24,13 +24,23 @@ func load_ui() -> void:
 	unpause_button.connect("pressed", unpause_game)
 
 func testing() -> void:
-	material_manager.spawn_material("Stone", Vector2i(200, 500))
+	material_manager.spawn_material("Lightning Orb", Vector2i(200, 500))
+	material_manager.spawn_material("Stone", Vector2i(200, -500))
+	material_manager.spawn_material("Fire Orb", Vector2i(-200, 500))
 	obstacle_manager.spawn_obstacle("Stone", Vector2i(500, 200))
+	obstacle_manager.spawn_obstacle("Tree", Vector2i(500, 500))
 	obstacle_manager.spawn_obstacle("Jester", Vector2i(-500, -500))
 	obstacle_manager.spawn_obstacle("Jester", Vector2i(-700, -500))
 
+func random_jester_spawn() -> void:
+	for i in range(50):
+		var ran_x : int = randi_range(-8000, 8000)
+		var ran_y : int = randi_range(-8000, 8000)
+		obstacle_manager.spawn_obstacle("Jester", Vector2i(ran_x, ran_y))
+
 func start_game():
 	testing()
+	random_jester_spawn()
 
 func pause_game():
 	if not game_paused:

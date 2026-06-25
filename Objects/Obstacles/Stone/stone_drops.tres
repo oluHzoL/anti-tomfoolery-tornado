@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MaterialTable" load_steps=2 format=3 uid="uid://60d7wdyba00d"]
+
+[ext_resource type="Script" uid="uid://cnhcvcua8bpt6" path="res://Objects/Materials/material_table.gd" id="1_k5ltg"]
+
+[resource]
+script = ExtResource("1_k5ltg")
+drop_list = PackedStringArray("Stone")
+rng_weight_table = Dictionary[String, int]({
+"Stone": 1
+})
+metadata/_custom_type_script = "uid://cnhcvcua8bpt6"

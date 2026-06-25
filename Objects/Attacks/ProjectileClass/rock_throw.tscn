@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3fg5w5btc1u"]
+[gd_scene load_steps=5 format=3 uid="uid://b3fg5w5btc1u"]
 
-[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/projectile.gd" id="1_tsgg2"]
-[ext_resource type="Texture2D" uid="uid://c0aqtep5744bl" path="res://Assets/Shapes/circle.png" id="2_ba3ks"]
+[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/ProjectileClass/projectile.gd" id="1_tsgg2"]
+[ext_resource type="Texture2D" uid="uid://cusy3wudbilwn" path="res://Assets/Sprites/stone_material.png" id="2_83s0j"]
+[ext_resource type="AudioStream" uid="uid://chrihsehouoll" path="res://Assets/SFX/490769__steveuk87__punch-2-heavy.ogg" id="2_i1b4a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7f2j3"]
 radius = 43.6807
@@ -17,6 +18,8 @@ knockback_power = 500
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_i1b4a")
+pitch_scale = 0.8
 
 [node name="StartupTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -27,8 +30,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.354728, 0.389799, 0.374673, 1)
-texture = ExtResource("2_ba3ks")
+texture = ExtResource("2_83s0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7f2j3")

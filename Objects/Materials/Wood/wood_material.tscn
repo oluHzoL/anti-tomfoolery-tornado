@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcjc6xpbfe2us"]
+
+[ext_resource type="Script" uid="uid://b60s7k6w48j3r" path="res://Objects/Materials/material_body_2d.gd" id="1_b6h2l"]
+[ext_resource type="Resource" uid="uid://du4rxbb3n8kvr" path="res://Objects/Materials/Wood/wood.tres" id="2_ux75p"]
+[ext_resource type="Texture2D" uid="uid://b1ddwyr240nyu" path="res://Assets/Sprites/stick.png" id="3_b6h2l"]
+[ext_resource type="AudioStream" uid="uid://ygac4pnr74m7" path="res://Assets/SFX/658431__deathbyfairydust__pop.wav" id="4_17qse"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brtmi"]
+radius = 60.0
+
+[node name="WoodMaterial" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_b6h2l")
+material_resource_reference = ExtResource("2_ux75p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_b6h2l")
+
+[node name="Collectbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 32
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectbox"]
+shape = SubResource("CircleShape2D_brtmi")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 99.0
+one_shot = true
+autostart = true
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_17qse")
+volume_db = -10.0
+pitch_scale = 1.4

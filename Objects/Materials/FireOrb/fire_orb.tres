@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaterialResource" load_steps=3 format=3 uid="uid://8gphm3s0l5xp"]
+
+[ext_resource type="PackedScene" uid="uid://bruxyj8b6dkcs" path="res://Objects/Attacks/ProjectileClass/Fireball/fireball.tscn" id="1_hfj8t"]
+[ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="2_8msfw"]
+
+[resource]
+script = ExtResource("2_8msfw")
+name = &"Fire Orb"
+attack = ExtResource("1_hfj8t")
+metadata/_custom_type_script = "uid://dmtcp5gc4oyfn"

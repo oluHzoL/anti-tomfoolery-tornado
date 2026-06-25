@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5rbnwyg16iwy"]
+[gd_scene load_steps=6 format=3 uid="uid://b5rbnwyg16iwy"]
 
 [ext_resource type="Script" uid="uid://b60s7k6w48j3r" path="res://Objects/Materials/material_body_2d.gd" id="1_jggqo"]
 [ext_resource type="Resource" uid="uid://dx7s7en4m3l7o" path="res://Objects/Materials/LightningOrb/lightning_orb.tres" id="2_s4phh"]
 [ext_resource type="Texture2D" uid="uid://b8t80h25hcha2" path="res://Assets/Sprites/lightning_orb.png" id="3_rak80"]
+[ext_resource type="AudioStream" uid="uid://ygac4pnr74m7" path="res://Assets/SFX/658431__deathbyfairydust__pop.wav" id="4_8o30f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jggqo"]
 radius = 60.0
@@ -31,3 +32,4 @@ one_shot = true
 autostart = true
 
 [node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8o30f")

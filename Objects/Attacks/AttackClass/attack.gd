@@ -16,6 +16,8 @@ var attack_active = false ## If the attack is active.
 var attack_startup = false
 var targets_hit : Array[Hurtbox] = []
 var attack_enabled = true ## If the attack can be used.
+var attacker : CharacterBody2D
+
 
 signal starting() ## Communicate when the attack is starting up.
 signal launched() ## Communicates when the attack is launched.
@@ -68,6 +70,7 @@ func multi_hit_interval():
 func attack_end(): # Process for when attacks need to "end"
 	# Can be used for stuff like explosions
 	attack_active = false
+	get_node("ActiveTimer").paused = true
 	set_deferred("visible", false)
 	set_deferred("monitoring", false)
 	if get_node("HitSound").playing:

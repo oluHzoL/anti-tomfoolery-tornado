@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MaterialResource" load_steps=3 format=3 uid="uid://dx7s7en4m3l7o"]
 
-[ext_resource type="PackedScene" uid="uid://dsqwhxxyc66tq" path="res://Objects/Attacks/LightningStrike/lightning_strike.tscn" id="1_sibaw"]
+[ext_resource type="PackedScene" uid="uid://dsqwhxxyc66tq" path="res://Objects/Attacks/AttackClass/LightningStrike/lightning_strike.tscn" id="1_sibaw"]
 [ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="2_psawi"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsqwhxxyc66tq"]
 
-[ext_resource type="Script" uid="uid://c8roct8oxence" path="res://Objects/Attacks/LightningStrike/lightning_strike.gd" id="1_psfl5"]
+[ext_resource type="Script" uid="uid://c8roct8oxence" path="res://Objects/Attacks/AttackClass/LightningStrike/lightning_strike.gd" id="1_psfl5"]
 [ext_resource type="AudioStream" uid="uid://doojlo5tq50jf" path="res://Assets/SFX/649360__sonofxaudio__sword_thunder01.wav" id="2_psfl5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g84sr"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://f60b5e2vntto"]
+[gd_scene load_steps=4 format=3 uid="uid://f60b5e2vntto"]
 
+[ext_resource type="Script" uid="uid://bttj3olhqixh6" path="res://UI/gameplay_ui.gd" id="1_pclro"]
 [ext_resource type="FontFile" uid="uid://bj286dio37yph" path="res://Assets/UI/june-gloom-font/Junegloom-P1jg.ttf" id="1_pqbjq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_05x41"]
@@ -13,6 +14,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+script = ExtResource("1_pclro")
 
 [node name="UpperLeftUI" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -24,6 +26,9 @@ layout_mode = 2
 text = "Time left:"
 label_settings = SubResource("LabelSettings_05x41")
 clip_text = true
+
+[node name="Interval" type="Timer" parent="UpperLeftUI/TimeLeftLabel"]
+autostart = true
 
 [node name="JesterCountLabel" type="Label" parent="UpperLeftUI"]
 layout_mode = 2

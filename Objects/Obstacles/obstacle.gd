@@ -16,6 +16,7 @@ enum STATE{ACTIVE, KNOCKBACK, DOWN}
 
 var health : int
 var state : STATE = STATE.ACTIVE
+var alive : bool = true
 
 @onready var hurtbox : Hurtbox = get_node("Hurtbox")
 @onready var health_bar = get_node("HPUIControl/HealthBar")
@@ -38,12 +39,14 @@ func add_health(amount : int) -> void:
 	health_bar.value = health
 
 func damage(amount : int) -> void:
+	if not alive: return
 	health -= amount
 	print(str(self) + " health: " + str(health))
 	if health < 0: health = 0
 	health_bar.value = health
 	if not health_bar.is_visible_in_tree(): health_bar.set_deferred("visible", true)
-	if health <= 0: death()
+	if health <= 0: 
+		death()
 
 func knockback(power : int, origin : Vector2):
 	var knockback_power = abs(power) - knockback_resistance
@@ -55,8 +58,13 @@ func knockback(power : int, origin : Vector2):
 
 func death() -> void:
 	# disable many things
-	if drops_loot and loot_table != null: loot_table.drop_loot()
-	request_removal.emit(self)
+	if alive:
+		alive = false
+		hurtbox.invulnerable = true #bandaid
+		hurtbox.set_deferred("monitoring", false)
+		hurtbox.set_deferred("monitorable", false)
+		if drops_loot and loot_table != null: loot_table.drop_loot()
+		request_removal.emit(self)
 	# check for spawner; if none exists (which is unusual) then queue free
 	
 

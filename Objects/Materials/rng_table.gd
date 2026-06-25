@@ -96,6 +96,7 @@ func random_picker() -> int:
 
 ## Returns a random key from [member weight_table] by calling [method random_picker].
 func return_random_key():
+	reset_weight_table()
 	var value : int = random_picker()
 	var returned_key = key_weight_list[value][0]
 	return returned_key
