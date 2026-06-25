@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MaterialTable" load_steps=2 format=3 uid="uid://dwlycbwjm46bb"]
+
+[ext_resource type="Script" uid="uid://cnhcvcua8bpt6" path="res://Objects/Materials/material_table.gd" id="1_ow1nv"]
+
+[resource]
+script = ExtResource("1_ow1nv")
+drop_list = PackedStringArray("Wood", "Wood", "Wood", "Stone", "Stone", "Stone")
+rng_weight_table = Dictionary[String, int]({})
+metadata/_custom_type_script = "uid://cnhcvcua8bpt6"

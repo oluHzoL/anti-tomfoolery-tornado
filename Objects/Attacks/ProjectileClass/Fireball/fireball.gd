@@ -32,10 +32,6 @@ func explode():
 
 
 func attack_end():
-	if not exploding:
-		anim_player.disconnect("animation_finished", attack_end)
-		explode()
-		await anim_player.animation_finished
 	get_node("CollisionShape2D").shape = default_shape
 	super()
 

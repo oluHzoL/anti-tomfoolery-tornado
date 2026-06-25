@@ -23,7 +23,10 @@ func collect(body) -> void:
 		collected.emit(self)
 
 func random_knockback():
-	pass
+	var x = randf_range(-1, 1)
+	var y = randf_range(-1, 1)
+	var vector := Vector2(x, y)
+	velocity = vector * speed
 
 func despawn() -> void:
 	collected.emit(self)

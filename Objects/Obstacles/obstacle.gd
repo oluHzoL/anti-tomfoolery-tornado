@@ -41,7 +41,6 @@ func add_health(amount : int) -> void:
 func damage(amount : int) -> void:
 	if not alive: return
 	health -= amount
-	print(str(self) + " health: " + str(health))
 	if health < 0: health = 0
 	health_bar.value = health
 	if not health_bar.is_visible_in_tree(): health_bar.set_deferred("visible", true)

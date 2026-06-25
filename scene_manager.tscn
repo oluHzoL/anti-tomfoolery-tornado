@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpnc821tx5ebu"]
+
+[ext_resource type="Script" uid="uid://bm6uwpv3kr6u1" path="res://scene_manager.gd" id="1_jo5df"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_jo5df")
+scenes = Dictionary[String, StringName]({
+"credits": &"res://UI/credits.tscn",
+"game": &"res://map.tscn",
+"intro": &"res://UI/intro_cutscene.tscn",
+"title_screen": &"res://UI/title_screen.tscn"
+})

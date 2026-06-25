@@ -23,7 +23,7 @@ func _ready() -> void:
 	resource_list = material_dex.mat_array # shallow copy
 	print(resource_list)
 	for resource in resource_list:
-		resources_available[resource] = 20 # anything above 0 to test attacks
+		resources_available[resource] = 0 # anything above 0 to test attacks
 	change_attacks_available(0)
 
 func change_attacks_available(start_index : int):

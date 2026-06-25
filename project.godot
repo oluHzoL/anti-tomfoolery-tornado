@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Tornado Game"
-run/main_scene="uid://cuuc3ibjmfgkh"
+run/main_scene="uid://dsmhptghdxpwm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneDataManager="*res://scene_manager.tscn"
 
 [display]
 

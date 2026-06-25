@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_k5ltg")
-drop_list = PackedStringArray("Stone")
+drop_list = PackedStringArray("Stone", "Stone", "Stone", "Stone")
 rng_weight_table = Dictionary[String, int]({
 "Stone": 1
 })

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cknogxbq174p0"]
+
+[ext_resource type="Script" uid="uid://bi1f8dd7i06yy" path="res://Objects/Obstacles/House/house.gd" id="1_e7eqy"]
+[ext_resource type="Resource" uid="uid://dwlycbwjm46bb" path="res://Objects/Obstacles/House/house_drops.tres" id="2_8l227"]
+[ext_resource type="Texture2D" uid="uid://dopvqtoexhen0" path="res://Assets/Sprites/house.png" id="3_8uft5"]
+[ext_resource type="PackedScene" uid="uid://dussyf15mesus" path="res://Objects/Obstacles/hurtbox.tscn" id="4_3nxaj"]
+[ext_resource type="Script" uid="uid://ceulta1kv3y80" path="res://Objects/Obstacles/spawner.gd" id="5_xpdvs"]
+[ext_resource type="Resource" uid="uid://c2s0qh5xt55gq" path="res://Objects/Materials/game_material_dex.tres" id="6_wq8kh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5d8ju"]
+size = Vector2(120, 120)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67nn5"]
+radius = 26.0192
+
+[node name="House" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(1.5, 1.5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_e7eqy")
+max_health = 6
+loot_table = ExtResource("2_8l227")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_8uft5")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_3nxaj")]
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_5d8ju")
+debug_color = Color(0.998233, 0, 0.147242, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_67nn5")
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("5_xpdvs")
+material_dex = ExtResource("6_wq8kh")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HPUIControl" type="Control" parent="."]
+editor_description = "140x60 size"
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = -95.0
+
+[node name="HealthBar" type="ProgressBar" parent="HPUIControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -49.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false

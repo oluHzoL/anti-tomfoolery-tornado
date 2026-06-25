@@ -18,6 +18,7 @@ size = Vector2(20, 20000)
 script = ExtResource("1_iw27f")
 
 [node name="Tornado" parent="." instance=ExtResource("1_wijl4")]
+z_index = 2
 
 [node name="Camera2D" type="Camera2D" parent="Tornado"]
 zoom = Vector2(0.5, 0.5)
@@ -56,7 +57,7 @@ attack_manager = NodePath("../AttackManager")
 material_manager = NodePath("../MaterialManager")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 200.0
+wait_time = 240.0
 one_shot = true
 autostart = true
 

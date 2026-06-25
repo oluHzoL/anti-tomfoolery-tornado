@@ -22,6 +22,7 @@ func spawn_material(material_name : String):
 func loot_drop(loot : PackedStringArray):
 	for material in loot:
 		if material in material_dex.index:
-			spawn_material(material)
+			if not get_parent().alive: #band aid of shame
+				spawn_material(material)
 		else:
 			print(str(material) + " not found in material_dex")
