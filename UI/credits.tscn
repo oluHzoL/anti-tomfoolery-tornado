@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2x6cssyhqm1l"]
+[gd_scene load_steps=6 format=3 uid="uid://c2x6cssyhqm1l"]
 
 [ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="1_uuuvy"]
 [ext_resource type="Texture2D" uid="uid://bxv2x8w7k5dj" path="res://Assets/Sprites/jester_sprite.png" id="2_kk2ga"]
+[ext_resource type="LabelSettings" uid="uid://bvk2sr84ccost" path="res://Assets/UI/lore_name_font.tres" id="3_ftffn"]
 [ext_resource type="Script" uid="uid://156lwj30voa8" path="res://UI/change_scene.gd" id="3_kk2ga"]
+[ext_resource type="LabelSettings" uid="uid://bbc7q1ar0rfb6" path="res://Assets/UI/lore_font.tres" id="4_0ccpq"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -66,12 +68,14 @@ size_flags_horizontal = 3
 [node name="Title" type="Label" parent="LoreContainer/VBoxContainer"]
 layout_mode = 2
 text = "\"The Jesters\""
+label_settings = ExtResource("3_ftffn")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="LoreContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "The jesters in question can be confused for skilled illusionists upon their supposed death. Do not be fooled, however; these are otherwordly entities who have learned to mimic unnatural sounds and otherwise incomprehensible visuals for the sake of tomfoolery. It is not known how they came to be or why they have come together; what matters is that they seek to disrupt the natural order."
+text = "The jesters in question can be confused for skilled illusionists upon their supposed death. Do not be fooled, however; these are otherworldly entities who have learned to mimic unnatural sounds and otherwise incomprehensible visuals for the sake of tomfoolery. It is not known how they came to be, why they have come together, or why they place their homes and belongings haphazardly; what matters is that they seek to disrupt the natural order."
+label_settings = ExtResource("4_0ccpq")
 vertical_alignment = 1
 autowrap_mode = 2
 

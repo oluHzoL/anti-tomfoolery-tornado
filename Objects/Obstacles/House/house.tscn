@@ -19,7 +19,7 @@ scale = Vector2(1.5, 1.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_e7eqy")
-max_health = 6
+max_health = 5
 loot_table = ExtResource("2_8l227")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

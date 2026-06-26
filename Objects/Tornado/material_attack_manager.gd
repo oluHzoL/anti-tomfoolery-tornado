@@ -5,7 +5,6 @@ class_name MaterialAttackManager
 # keybinds for each ammo/attack type
 # mode switch, click to use
 @export var material_dex : EntityDex
-@export var DEBUG_ATTACK : PackedScene # TO BE REMOVED
 
 
 var resource_list : Array[MaterialResource]
@@ -17,7 +16,9 @@ var current_attack : int = 0
 
 signal available_attacks_changed(list : Array[MaterialResource])
 signal request_attack(attack : PackedScene, tornado : CharacterBody2D, timer : Timer)
-
+signal equip_changed(index : int)
+signal attack_used()
+signal material_gained() #emitted via material_body
 
 func _ready() -> void:
 	resource_list = material_dex.mat_array # shallow copy
@@ -44,6 +45,7 @@ func use_attack():
 	
 	if resources_available[attacks_available[current_attack]] > 0:
 		resources_available[attacks_available[current_attack]] -= 1
+		attack_used.emit()
 		# don't call get_parent() at home kids
 		request_attack.emit(attacks_available[current_attack].attack, get_parent(), get_node("CooldownTimer"))
 
@@ -51,25 +53,21 @@ func _process(delta: float) -> void:
 	# heresy
 	if Input.is_action_just_pressed("attack_1"):
 		current_attack = 0
-		print("current attack set")
+		equip_changed.emit(current_attack)
 	elif Input.is_action_just_pressed("attack_2"):
 		current_attack = 1
+		equip_changed.emit(current_attack)
 	elif Input.is_action_just_pressed("attack_3"):
 		current_attack = 2
+		equip_changed.emit(current_attack)
 	elif Input.is_action_just_pressed("attack_4"):
 		current_attack = 3
+		equip_changed.emit(current_attack)
 	elif Input.is_action_just_pressed("attack_5"):
 		current_attack = 4
+		equip_changed.emit(current_attack)
 	elif Input.is_action_just_pressed("attack_6"):
 		current_attack = 5
-	elif Input.is_action_just_pressed("attack_7"):
-		current_attack = 6
-	elif Input.is_action_just_pressed("attack_8"):
-		current_attack = 7
-	elif Input.is_action_just_pressed("attack_0"):
-		current_attack = 8
-	elif Input.is_action_just_pressed("attack_0"):
-		current_attack = 9
-	elif Input.is_action_just_pressed("debug_attack"): #remove this
-		request_attack.emit(DEBUG_ATTACK, get_parent(), get_node("CooldownTimer"))
+		equip_changed.emit(current_attack)
+	
 	

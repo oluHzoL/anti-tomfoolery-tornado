@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Merry%20Go.mp3-9217822b0ea9741c50d08400e5a68b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

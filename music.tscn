@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://buopvubh1u0bk"]
+
+[ext_resource type="AudioStream" uid="uid://canoge1x3jgn6" path="res://Assets/SFX/Merry%20Go.mp3" id="1_3h6ak"]
+
+[node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_3h6ak")
+volume_db = -16.0
+autoplay = true

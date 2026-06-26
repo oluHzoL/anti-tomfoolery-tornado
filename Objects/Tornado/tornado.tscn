@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cum2qic3xal0s"]
+[gd_scene load_steps=20 format=3 uid="uid://cum2qic3xal0s"]
 
 [ext_resource type="Script" uid="uid://biselsivaqfc5" path="res://Objects/Tornado/tornado.gd" id="1_qunbj"]
 [ext_resource type="Script" uid="uid://cethbhqnwusfr" path="res://Objects/Tornado/Mouse/spin_manager.gd" id="2_pa2op"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://csdmhmy2e6o27" path="res://Objects/Tornado/material_attack_manager.gd" id="6_70qc1"]
 [ext_resource type="AudioStream" uid="uid://bu2kqu0t2lynn" path="res://Assets/SFX/Wind_Impact.mp3" id="7_635e0"]
 [ext_resource type="AudioStream" uid="uid://dlexdr4ualx2p" path="res://Assets/SFX/dragon-studio-elemental-spell-impact-wind-478376.mp3" id="7_aonfq"]
-[ext_resource type="PackedScene" uid="uid://dsqwhxxyc66tq" path="res://Objects/Attacks/AttackClass/LightningStrike/lightning_strike.tscn" id="7_gah8r"]
 [ext_resource type="Script" uid="uid://bk44c7bbdquko" path="res://Objects/Tornado/tornado_sound_manager.gd" id="7_u5g7l"]
 [ext_resource type="AudioStream" uid="uid://cauwsf71nx1il" path="res://Assets/SFX/408442__wesselorg__wind-blow-mouth.wav" id="8_u5g7l"]
 [ext_resource type="PackedScene" uid="uid://bpaqyai51bvpf" path="res://Objects/Attacks/TornadoAttack/tornado_attack.tscn" id="10_u5g7l"]
@@ -58,7 +57,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uy3p"]
-radius = 60.208
+radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qunbj"]
 radius = 68.2642
@@ -113,7 +112,6 @@ one_shot = true
 [node name="MaterialAttackManager" type="Node" parent="."]
 script = ExtResource("6_70qc1")
 material_dex = ExtResource("6_1g62r")
-DEBUG_ATTACK = ExtResource("7_gah8r")
 
 [node name="CooldownTimer" type="Timer" parent="MaterialAttackManager"]
 process_callback = 0

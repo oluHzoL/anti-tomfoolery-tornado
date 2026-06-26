@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://f60b5e2vntto"]
+[gd_scene load_steps=12 format=3 uid="uid://f60b5e2vntto"]
 
 [ext_resource type="Script" uid="uid://bttj3olhqixh6" path="res://UI/gameplay_ui.gd" id="1_pclro"]
 [ext_resource type="FontFile" uid="uid://bj286dio37yph" path="res://Assets/UI/june-gloom-font/Junegloom-P1jg.ttf" id="1_pqbjq"]
+[ext_resource type="Texture2D" uid="uid://mechwt2142k8" path="res://Assets/Sprites/pause.png" id="3_i7ma2"]
+[ext_resource type="LabelSettings" uid="uid://0qw50q1y2bp7" path="res://Assets/UI/hotbar_item_font.tres" id="4_4jk46"]
+[ext_resource type="Texture2D" uid="uid://cusy3wudbilwn" path="res://Assets/Sprites/stone_material.png" id="4_jpgws"]
+[ext_resource type="LabelSettings" uid="uid://y8q2vwmbveqm" path="res://Assets/UI/hotbar_number_font.tres" id="5_1j2ro"]
+[ext_resource type="Texture2D" uid="uid://b1ddwyr240nyu" path="res://Assets/Sprites/stick.png" id="7_bkgld"]
+[ext_resource type="Texture2D" uid="uid://er3mwkqrp64f" path="res://Assets/Sprites/fire_orb.png" id="8_tru4y"]
+[ext_resource type="Texture2D" uid="uid://b8t80h25hcha2" path="res://Assets/Sprites/lightning_orb.png" id="9_bkgld"]
+[ext_resource type="Texture2D" uid="uid://dcyf5o2ofv8yn" path="res://Assets/Sprites/ice_orb.png" id="10_tru4y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_05x41"]
 font = ExtResource("1_pqbjq")
@@ -23,7 +31,7 @@ offset_bottom = 180.0
 
 [node name="TimeLeftLabel" type="Label" parent="UpperLeftUI"]
 layout_mode = 2
-text = "Time left:"
+text = "Time left: 300"
 label_settings = SubResource("LabelSettings_05x41")
 clip_text = true
 
@@ -32,11 +40,12 @@ autostart = true
 
 [node name="JesterCountLabel" type="Label" parent="UpperLeftUI"]
 layout_mode = 2
-text = "Jesters Left:"
+text = "Jesters Left: 50"
 label_settings = SubResource("LabelSettings_05x41")
 clip_text = true
 
 [node name="TopRightUI" type="Control" parent="."]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -46,19 +55,186 @@ offset_bottom = 150.0
 grow_horizontal = 0
 
 [node name="PauseButton" type="Button" parent="TopRightUI"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="TopRightUI/PauseButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_i7ma2")
+expand_mode = 1
 
-[node name="BottomLeftUI" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HotbarUI" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -383.0
+offset_top = -200.0
+offset_right = 383.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="BottomRightUI" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MaterialUIContainer" type="VBoxContainer" parent="HotbarUI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HotbarUI/MaterialUIContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Stone [1]"
+label_settings = ExtResource("4_4jk46")
+horizontal_alignment = 1
+
+[node name="MaterialImage" type="TextureRect" parent="HotbarUI/MaterialUIContainer"]
+layout_mode = 2
+texture = ExtResource("4_jpgws")
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="HotbarUI/MaterialUIContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "x0"
+label_settings = ExtResource("5_1j2ro")
+horizontal_alignment = 1
+
+[node name="MaterialUIContainer2" type="VBoxContainer" parent="HotbarUI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HotbarUI/MaterialUIContainer2"]
+texture_filter = 1
+layout_mode = 2
+text = "Wood [2]"
+label_settings = ExtResource("4_4jk46")
+horizontal_alignment = 1
+
+[node name="MaterialImage" type="TextureRect" parent="HotbarUI/MaterialUIContainer2"]
+layout_mode = 2
+texture = ExtResource("7_bkgld")
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="HotbarUI/MaterialUIContainer2"]
+texture_filter = 1
+layout_mode = 2
+text = "x0"
+label_settings = ExtResource("5_1j2ro")
+horizontal_alignment = 1
+
+[node name="MaterialUIContainer3" type="VBoxContainer" parent="HotbarUI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HotbarUI/MaterialUIContainer3"]
+texture_filter = 1
+layout_mode = 2
+text = "Fire [3]"
+label_settings = ExtResource("4_4jk46")
+horizontal_alignment = 1
+
+[node name="MaterialImage" type="TextureRect" parent="HotbarUI/MaterialUIContainer3"]
+layout_mode = 2
+texture = ExtResource("8_tru4y")
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="HotbarUI/MaterialUIContainer3"]
+texture_filter = 1
+layout_mode = 2
+text = "x0"
+label_settings = ExtResource("5_1j2ro")
+horizontal_alignment = 1
+
+[node name="MaterialUIContainer4" type="VBoxContainer" parent="HotbarUI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HotbarUI/MaterialUIContainer4"]
+texture_filter = 1
+layout_mode = 2
+text = "Lightning [4]"
+label_settings = ExtResource("4_4jk46")
+horizontal_alignment = 1
+
+[node name="MaterialImage" type="TextureRect" parent="HotbarUI/MaterialUIContainer4"]
+layout_mode = 2
+texture = ExtResource("9_bkgld")
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="HotbarUI/MaterialUIContainer4"]
+texture_filter = 1
+layout_mode = 2
+text = "x0"
+label_settings = ExtResource("5_1j2ro")
+horizontal_alignment = 1
+
+[node name="MaterialUIContainer5" type="VBoxContainer" parent="HotbarUI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HotbarUI/MaterialUIContainer5"]
+texture_filter = 1
+layout_mode = 2
+text = "Ice [5]"
+label_settings = ExtResource("4_4jk46")
+horizontal_alignment = 1
+
+[node name="MaterialImage" type="TextureRect" parent="HotbarUI/MaterialUIContainer5"]
+layout_mode = 2
+texture = ExtResource("10_tru4y")
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="HotbarUI/MaterialUIContainer5"]
+texture_filter = 1
+layout_mode = 2
+text = "x0"
+label_settings = ExtResource("5_1j2ro")
+horizontal_alignment = 1
+
+[node name="BoostBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(75, 450)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -225.0
+offset_right = 100.0
+offset_bottom = 225.0
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="BoostBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 19.0
+offset_right = 25.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+text = "Boost"
+horizontal_alignment = 1
+vertical_alignment = 1

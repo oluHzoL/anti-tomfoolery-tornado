@@ -17,6 +17,7 @@ func _ready() -> void:
 func collect(body) -> void:
 	if body is Tornado:
 		body.get_node("MaterialAttackManager").resources_available[material_resource_reference] += 1
+		body.get_node("MaterialAttackManager").material_gained.emit()
 		if has_node("CollectSound"):
 			get_node("CollectSound").play()
 			await get_node("CollectSound").finished

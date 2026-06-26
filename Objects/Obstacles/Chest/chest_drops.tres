@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ie3ga")
-drop_list = PackedStringArray("Stone", "Stone", "Wood", "Wood", "Fire Orb", "Lightning Orb")
+drop_list = PackedStringArray("Fire Orb", "Lightning Orb", "Ice Orb")
 rng_weight_table = Dictionary[String, int]({})
 metadata/_custom_type_script = "uid://cnhcvcua8bpt6"

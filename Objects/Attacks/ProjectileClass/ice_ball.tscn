@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://sviwg1raqonb"]
+
+[ext_resource type="Script" uid="uid://ctic6whue3hrp" path="res://Objects/Attacks/ProjectileClass/projectile.gd" id="1_2aaon"]
+[ext_resource type="Texture2D" uid="uid://c0aqtep5744bl" path="res://Assets/Shapes/circle.png" id="2_hmlfp"]
+[ext_resource type="AudioStream" uid="uid://c5d46g7cwno1i" path="res://Assets/SFX/709888__lotteria001__ice-magic-arrow_type-01.wav" id="2_up8vg"]
+[ext_resource type="AudioStream" uid="uid://dv424s5jfs3yy" path="res://Assets/SFX/550267__eminyildirim__magic-ice-impact-skill-spell.wav" id="3_qkrcr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_up8vg"]
+radius = 200.0
+
+[node name="IceBall" type="Area2D"]
+z_index = 2
+script = ExtResource("1_2aaon")
+pierce = true
+damage = 3
+multi_hit = true
+knockback_power = 200
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_up8vg")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qkrcr")
+volume_db = -2.0
+
+[node name="StartupTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.752941, 1, 1)
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_hmlfp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_up8vg")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="MultiHitInterval" type="Timer" parent="."]
+one_shot = true

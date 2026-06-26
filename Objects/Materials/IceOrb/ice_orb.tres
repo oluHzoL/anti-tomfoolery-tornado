@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaterialResource" load_steps=3 format=3 uid="uid://dcv8imy4pi3qn"]
+
+[ext_resource type="PackedScene" uid="uid://sviwg1raqonb" path="res://Objects/Attacks/ProjectileClass/ice_ball.tscn" id="1_g0tus"]
+[ext_resource type="Script" uid="uid://dmtcp5gc4oyfn" path="res://Objects/Materials/material.gd" id="2_sgbyd"]
+
+[resource]
+script = ExtResource("2_sgbyd")
+name = &"Ice Orb"
+attack = ExtResource("1_g0tus")
+metadata/_custom_type_script = "uid://dmtcp5gc4oyfn"

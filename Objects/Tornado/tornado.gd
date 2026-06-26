@@ -24,6 +24,8 @@ var move_vector := Vector2.ZERO:
 		
 var prev_move_vector := Vector2(1, 0)
 
+signal charge_boosted()
+signal charge_released()
 # keybind dict
 
 func _ready() -> void:
@@ -51,6 +53,7 @@ func subtract_power(amount : int):
 
 func add_charge(amount : int):
 	charge += amount
+	charge_boosted.emit()
 	if charge > 100:
 		charge = 100
 	else:
@@ -80,8 +83,8 @@ func _physics_process(delta: float) -> void:
 			
 			if Input.is_action_just_pressed("use_attack"):
 				# come up with more elegant regions some day
-				var region = Rect2(-1700, -800, 1700 * 2, 800 * 2)
-				if region.has_point(get_local_mouse_position()):
+				var region = Rect2(1700, -1080, 420, 200)
+				if not region.has_point(get_local_mouse_position()): # prevents pause button fire
 					get_node("MaterialAttackManager").use_attack() # add a safeguard for clicking on UI
 			# State Transition
 			if Input.is_action_pressed("special"):
@@ -116,6 +119,7 @@ func _physics_process(delta: float) -> void:
 					SoundManager.get_node("Release").play()
 				charge = 0 
 				AnimPlayer.speed_scale = 1
+				charge_released.emit()
 				
 			
 	move_and_slide()

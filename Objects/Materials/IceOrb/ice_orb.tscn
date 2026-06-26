@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://d07k675f4dgvm"]
+
+[ext_resource type="Script" uid="uid://b60s7k6w48j3r" path="res://Objects/Materials/material_body_2d.gd" id="1_n5fy3"]
+[ext_resource type="Resource" uid="uid://dcv8imy4pi3qn" path="res://Objects/Materials/IceOrb/ice_orb.tres" id="2_sktyk"]
+[ext_resource type="Texture2D" uid="uid://dcyf5o2ofv8yn" path="res://Assets/Sprites/ice_orb.png" id="3_5wuat"]
+[ext_resource type="AudioStream" uid="uid://ygac4pnr74m7" path="res://Assets/SFX/658431__deathbyfairydust__pop.wav" id="4_ym5r2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jggqo"]
+radius = 60.0
+
+[node name="IceOrb" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_n5fy3")
+material_resource_reference = ExtResource("2_sktyk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("3_5wuat")
+
+[node name="Collectbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectbox"]
+shape = SubResource("CircleShape2D_jggqo")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 99.0
+one_shot = true
+autostart = true
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ym5r2")
