@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckee6og0167s0"]
+
+[ext_resource type="Texture2D" uid="uid://d16ue0hi6dj4n" path="res://Assets/Sprites/pointer.png" id="1_k5730"]
+
+[node name="Pointer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.631373)
+texture_filter = 1
+position = Vector2(300, 0)
+rotation = 1.5708
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_k5730")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl21tdneupk13"]
+
+[ext_resource type="Script" uid="uid://cjma5dfbfoq34" path="res://Objects/Tornado/Pointers/pointer_system.gd" id="1_u27ml"]
+
+[node name="PointerSystem" type="Node2D"]
+script = ExtResource("1_u27ml")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

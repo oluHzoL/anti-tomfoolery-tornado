@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://f60b5e2vntto"]
+[gd_scene load_steps=14 format=3 uid="uid://f60b5e2vntto"]
 
 [ext_resource type="Script" uid="uid://bttj3olhqixh6" path="res://UI/gameplay_ui.gd" id="1_pclro"]
 [ext_resource type="FontFile" uid="uid://bj286dio37yph" path="res://Assets/UI/june-gloom-font/Junegloom-P1jg.ttf" id="1_pqbjq"]
 [ext_resource type="Texture2D" uid="uid://mechwt2142k8" path="res://Assets/Sprites/pause.png" id="3_i7ma2"]
 [ext_resource type="LabelSettings" uid="uid://0qw50q1y2bp7" path="res://Assets/UI/hotbar_item_font.tres" id="4_4jk46"]
 [ext_resource type="Texture2D" uid="uid://cusy3wudbilwn" path="res://Assets/Sprites/stone_material.png" id="4_jpgws"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="4_mgv6r"]
 [ext_resource type="LabelSettings" uid="uid://y8q2vwmbveqm" path="res://Assets/UI/hotbar_number_font.tres" id="5_1j2ro"]
 [ext_resource type="Texture2D" uid="uid://b1ddwyr240nyu" path="res://Assets/Sprites/stick.png" id="7_bkgld"]
 [ext_resource type="Texture2D" uid="uid://er3mwkqrp64f" path="res://Assets/Sprites/fire_orb.png" id="8_tru4y"]
@@ -14,6 +15,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_05x41"]
 font = ExtResource("1_pqbjq")
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_tru4y"]
+font_size = 30
 
 [node name="GameplayUI" type="Control"]
 process_mode = 1
@@ -78,6 +82,48 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_i7ma2")
 expand_mode = 1
+
+[node name="BoostBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(75, 450)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -225.0
+offset_right = 100.0
+offset_bottom = 225.0
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="BoostBar"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 19.0
+offset_right = 25.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+text = "Boost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.498039, 0.498039, 0.498039, 0.521569)
+custom_minimum_size = Vector2(766, 260)
+layout_mode = 0
+offset_left = 574.0
+offset_top = 822.0
+offset_right = 1340.0
+offset_bottom = 1082.0
+texture = ExtResource("4_mgv6r")
 
 [node name="HotbarUI" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -207,34 +253,13 @@ text = "x0"
 label_settings = ExtResource("5_1j2ro")
 horizontal_alignment = 1
 
-[node name="BoostBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(75, 450)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -225.0
-offset_right = 100.0
-offset_bottom = 225.0
-grow_vertical = 2
-fill_mode = 3
-show_percentage = false
-
-[node name="Label" type="Label" parent="BoostBar"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = 19.0
-offset_right = 25.0
-offset_bottom = 69.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -1.5708
-text = "Boost"
+[node name="EquipLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(766, 0)
+layout_mode = 0
+offset_left = 578.0
+offset_top = 830.0
+offset_right = 1344.0
+offset_bottom = 872.0
+text = "Equipped: Stone"
+label_settings = SubResource("LabelSettings_tru4y")
 horizontal_alignment = 1
-vertical_alignment = 1

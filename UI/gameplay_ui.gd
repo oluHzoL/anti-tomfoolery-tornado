@@ -40,4 +40,6 @@ func update_hotbar_counts() -> void:
 		hotbar_ui.get_child(i).get_node("Amount").text = "x" + str(amount)
 
 func update_hotbar_equip(index : int) -> void:
-	var target_container = hotbar_ui.get_child(index)
+	var mam = tornado.get_node("MaterialAttackManager")
+	var equip_label = get_node("EquipLabel")
+	equip_label.text = "Equipped: " + str(mam.attacks_available[index].name)

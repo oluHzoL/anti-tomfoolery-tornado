@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuuc3ibjmfgkh"]
+[gd_scene load_steps=13 format=3 uid="uid://cuuc3ibjmfgkh"]
 
 [ext_resource type="Script" uid="uid://c6ppmyqr0mt3h" path="res://game_loop.gd" id="1_iw27f"]
 [ext_resource type="PackedScene" uid="uid://cum2qic3xal0s" path="res://Objects/Tornado/tornado.tscn" id="1_wijl4"]
 [ext_resource type="Script" uid="uid://cmlw256r6j5nd" path="res://Objects/Map/attack_manager.gd" id="3_e0an3"]
+[ext_resource type="PackedScene" uid="uid://dl21tdneupk13" path="res://Objects/Tornado/Pointers/pointer_system.tscn" id="3_sb2pt"]
 [ext_resource type="Script" uid="uid://bke6ukrxmxdvd" path="res://Objects/Map/material_manager.gd" id="4_p5pve"]
 [ext_resource type="PackedScene" uid="uid://f60b5e2vntto" path="res://UI/gameplay_ui.tscn" id="4_sb2pt"]
 [ext_resource type="PackedScene" uid="uid://bevu46j1q7j1d" path="res://UI/pause_menu.tscn" id="5_0t07s"]
@@ -30,7 +31,9 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Pointers" type="Node2D" parent="Tornado"]
+[node name="PointerSystem" parent="Tornado" node_paths=PackedStringArray("obstacle_manager") instance=ExtResource("3_sb2pt")]
+visible = false
+obstacle_manager = NodePath("../../ObstacleManager")
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3

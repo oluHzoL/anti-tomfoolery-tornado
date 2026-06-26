@@ -66,8 +66,6 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("attack_5"):
 		current_attack = 4
 		equip_changed.emit(current_attack)
-	elif Input.is_action_just_pressed("attack_6"):
-		current_attack = 5
-		equip_changed.emit(current_attack)
+
 	
 	
