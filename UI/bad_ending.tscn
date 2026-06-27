@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://o2jhix3hplj2"]
+
+[ext_resource type="Script" uid="uid://dm7deptre4c4t" path="res://UI/ending.gd" id="1_yrjtt"]
+[ext_resource type="Texture2D" uid="uid://cbnvd1lig4a0b" path="res://Assets/Sprites/badend.png" id="2_bp28r"]
+[ext_resource type="AudioStream" uid="uid://dppldlprkfw8g" path="res://Assets/SFX/sad_trombone.mp3" id="3_31cex"]
+[ext_resource type="LabelSettings" uid="uid://bbc7q1ar0rfb6" path="res://Assets/UI/lore_font.tres" id="4_8pw8c"]
+[ext_resource type="LabelSettings" uid="uid://bvk2sr84ccost" path="res://Assets/UI/lore_name_font.tres" id="5_jxhg1"]
+[ext_resource type="Script" uid="uid://156lwj30voa8" path="res://UI/change_scene.gd" id="6_il53f"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="7_o4271"]
+
+[sub_resource type="Animation" id="Animation_ucyng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ltwjt"]
+resource_name = "good_ending"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfx36"]
+_data = {
+&"RESET": SubResource("Animation_ucyng"),
+&"ending": SubResource("Animation_ltwjt")
+}
+
+[node name="BadEnding" type="Control" node_paths=PackedStringArray("button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yrjtt")
+button = NodePath("VBoxContainer/Button")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bp28r")
+
+[node name="Wizard" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -1000.0
+offset_right = 1000.0
+grow_vertical = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_31cex")
+volume_db = -14.0
+autoplay = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -287.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Horrifyingly, it took the power of a single jester to punish the wizard. He was forced to age one year, which incapacitated him for the rest of his days."
+label_settings = ExtResource("4_8pw8c")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Defeat"
+label_settings = ExtResource("5_jxhg1")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+script = ExtResource("6_il53f")
+target_scene = "title_screen"
+
+[node name="Label" type="Label" parent="VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -36.0
+offset_right = 86.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return"
+label_settings = ExtResource("5_jxhg1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hfx36")
+}
+
+[node name="Transition" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_o4271")

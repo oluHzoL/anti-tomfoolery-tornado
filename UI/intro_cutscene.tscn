@@ -1,8 +1,145 @@
-[gd_scene load_steps=4 format=3 uid="uid://blyfuogn5evct"]
+[gd_scene load_steps=11 format=3 uid="uid://blyfuogn5evct"]
 
+[ext_resource type="Script" uid="uid://mgu1vrq3v0mb" path="res://UI/intro_cutscene.gd" id="1_7spn2"]
 [ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="1_pdgia"]
 [ext_resource type="Texture2D" uid="uid://ycodtp2kiya1" path="res://Assets/Sprites/lionandmonkey.png" id="2_7spn2"]
 [ext_resource type="Texture2D" uid="uid://con1rh0t5v1a5" path="res://Assets/Sprites/bait.png" id="3_oax4f"]
+[ext_resource type="LabelSettings" uid="uid://bvk2sr84ccost" path="res://Assets/UI/lore_name_font.tres" id="5_c0xs2"]
+[ext_resource type="LabelSettings" uid="uid://bjyuaioqxjaty" path="res://Assets/UI/controls_font.tres" id="6_fpoyg"]
+[ext_resource type="Script" uid="uid://156lwj30voa8" path="res://UI/change_scene.gd" id="7_fpoyg"]
+
+[sub_resource type="Animation" id="Animation_oax4f"]
+resource_name = "cutscene"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Symbolism:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Art:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/TextureRect:size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(0, 1080), Vector2(1920, 1080)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/UI:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/UI/Button:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_c0xs2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Symbolism:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Art:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/TextureRect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(800, 1080)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/UI:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/UI/Button:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fpoyg"]
+_data = {
+&"RESET": SubResource("Animation_c0xs2"),
+&"cutscene": SubResource("Animation_oax4f")
+}
 
 [node name="Cutscene" type="Control"]
 layout_mode = 3
@@ -11,6 +148,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7spn2")
 
 [node name="Graphics" type="Control" parent="."]
 layout_mode = 1
@@ -55,3 +193,123 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_oax4f")
+
+[node name="Control" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pdgia")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.572549)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -540.0
+offset_right = 100.0
+offset_bottom = 540.0
+grow_vertical = 2
+texture = ExtResource("1_pdgia")
+
+[node name="UI" type="Control" parent="Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameControlsContainer" type="VBoxContainer" parent="Control/UI"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -254.0
+offset_bottom = 254.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ControlTitle" type="Label" parent="Control/UI/GameControlsContainer"]
+layout_mode = 2
+text = "How to control a 
+Magic Tornado:"
+label_settings = ExtResource("5_c0xs2")
+horizontal_alignment = 1
+
+[node name="GameControls" type="Label" parent="Control/UI/GameControlsContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "- WASD to Move
+- Shift to begin charging
+- Spin the mouse around the center of the screen to charge
+- Let go of the shift key to boost; use WASD to pick a direction
+- Number keys to equip a special attack
+- Click to use equipped special attack"
+label_settings = ExtResource("6_fpoyg")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Intro Lore" type="Label" parent="Control/UI"]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 78.0
+offset_top = -250.0
+offset_right = 878.0
+offset_bottom = 250.0
+grow_vertical = 2
+scale = Vector2(0.998648, 1)
+text = "Following a dispute over his age, the local wizard has decided to use a magic tornado to wipe out every jester. However, he must be swift, as leaving even one of them alive could spell his doom."
+label_settings = ExtResource("6_fpoyg")
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Control/UI"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+disabled = true
+script = ExtResource("7_fpoyg")
+target_scene = "game"
+
+[node name="Label" type="Label" parent="Control/UI/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -36.0
+offset_right = 70.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Begin"
+label_settings = ExtResource("5_c0xs2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fpoyg")
+}

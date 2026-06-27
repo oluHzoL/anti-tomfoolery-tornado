@@ -41,7 +41,7 @@ func point(pointer : Node2D):
 	pointer.set_rotation(atan2(dir.y, dir.x))
 
 func enable_pointers():
-	if obstacle_manager.jester_count < 30:
+	if obstacle_manager.jester_count < 25:
 		set_deferred("visible", true)
 
 func find_jesters():

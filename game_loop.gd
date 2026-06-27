@@ -33,7 +33,7 @@ func testing() -> void:
 	obstacle_manager.spawn_obstacle("Jester", Vector2i(-700, -500))
 
 func random_spawn() -> void:
-	for i in range(50):
+	for i in range(40):
 		var ran_x : int = randi_range(-8000, 8000)
 		var ran_y : int = randi_range(-8000, 8000)
 		obstacle_manager.spawn_obstacle("Jester", Vector2i(ran_x, ran_y))
@@ -66,9 +66,15 @@ func unpause_game():
 
 func end_game(goal_reached : bool = false):
 	if game_active:
+		get_node("Tornado").remove_control()
+		timer.stop()
+		obstacle_manager.disconnect("all_jesters_killed", end_game)
+		game_active = false
+		get_node("AnimationPlayer").play("end_game_anim")
+		await get_node("AnimationPlayer").animation_finished
 		if goal_reached:
-			timer.stop()
 			print("good ending")
+			SceneDataManager.switch_scene("good_ending")
 		else:
-			obstacle_manager.disconnect("all_jesters_killed", end_game)
 			print("bad ending")
+			SceneDataManager.switch_scene("bad_ending")

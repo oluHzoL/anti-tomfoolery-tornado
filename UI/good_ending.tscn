@@ -1,0 +1,172 @@
+[gd_scene load_steps=12 format=3 uid="uid://dfdfdqhpqcusp"]
+
+[ext_resource type="Script" uid="uid://dm7deptre4c4t" path="res://UI/ending.gd" id="1_pqvkn"]
+[ext_resource type="Texture2D" uid="uid://chqubi85f670b" path="res://Assets/Sprites/goodendingwizard.png" id="1_wq3e3"]
+[ext_resource type="AudioStream" uid="uid://b5xmss78eveh4" path="res://Assets/SFX/611001__crowcountingman__fire_burning_stove_closed_door.wav" id="2_ky0f5"]
+[ext_resource type="Texture2D" uid="uid://cmw24q05ctx5e" path="res://Assets/Sprites/goodend.png" id="2_m2cnh"]
+[ext_resource type="LabelSettings" uid="uid://bbc7q1ar0rfb6" path="res://Assets/UI/lore_font.tres" id="3_ijv7a"]
+[ext_resource type="LabelSettings" uid="uid://bvk2sr84ccost" path="res://Assets/UI/lore_name_font.tres" id="4_e8nig"]
+[ext_resource type="Script" uid="uid://156lwj30voa8" path="res://UI/change_scene.gd" id="6_m2cnh"]
+[ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="8_foh8q"]
+
+[sub_resource type="Animation" id="Animation_ucyng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ltwjt"]
+resource_name = "good_ending"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfx36"]
+_data = {
+&"RESET": SubResource("Animation_ucyng"),
+&"ending": SubResource("Animation_ltwjt")
+}
+
+[node name="GoodEnding" type="Control" node_paths=PackedStringArray("button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pqvkn")
+button = NodePath("VBoxContainer/Button")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m2cnh")
+
+[node name="Wizard" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -1000.0
+offset_right = 1000.0
+grow_vertical = 0
+texture = ExtResource("1_wq3e3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ky0f5")
+autoplay = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -287.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "With his mission complete, the wizard has transformed into something more monstrous."
+label_settings = ExtResource("3_ijv7a")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Victory"
+label_settings = ExtResource("4_e8nig")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Time:"
+label_settings = ExtResource("4_e8nig")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+script = ExtResource("6_m2cnh")
+target_scene = "title_screen"
+
+[node name="Label" type="Label" parent="VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -36.0
+offset_right = 86.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return"
+label_settings = ExtResource("4_e8nig")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hfx36")
+}
+
+[node name="Transition" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_foh8q")

@@ -44,7 +44,7 @@ autostart = true
 
 [node name="JesterCountLabel" type="Label" parent="UpperLeftUI"]
 layout_mode = 2
-text = "Jesters Left: 50"
+text = "Jesters Left: 40"
 label_settings = SubResource("LabelSettings_05x41")
 clip_text = true
 

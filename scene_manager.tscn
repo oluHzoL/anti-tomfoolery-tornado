@@ -5,8 +5,10 @@
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_jo5df")
 scenes = Dictionary[String, StringName]({
+"bad_ending": &"res://UI/bad_ending.tscn",
 "credits": &"res://UI/credits.tscn",
 "game": &"res://map.tscn",
+"good_ending": &"res://UI/good_ending.tscn",
 "intro": &"res://UI/intro_cutscene.tscn",
 "title_screen": &"res://UI/title_screen.tscn"
 })

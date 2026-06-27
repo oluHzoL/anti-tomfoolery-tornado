@@ -60,6 +60,9 @@ func add_charge(amount : int):
 		AnimPlayer.speed_scale += 2
 		tornado_attack.add_radius(130)
 
+func remove_control():
+	state = State.EXPIRED
+
 func _process(delta: float) -> void:
 	move_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	# # TODO: deal with diagonal vectors (you'd have to let go of both buttons at once otherwise)
@@ -121,6 +124,8 @@ func _physics_process(delta: float) -> void:
 				AnimPlayer.speed_scale = 1
 				charge_released.emit()
 				
+		State.EXPIRED:
+			pass
 			
 	move_and_slide()
 	

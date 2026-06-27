@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsmhptghdxpwm"]
+[gd_scene load_steps=5 format=3 uid="uid://dsmhptghdxpwm"]
 
+[ext_resource type="Texture2D" uid="uid://cwnhkldlfveph" path="res://Assets/Sprites/titlecg.png" id="1_5whv5"]
 [ext_resource type="Script" uid="uid://156lwj30voa8" path="res://UI/change_scene.gd" id="1_iaef4"]
+[ext_resource type="LabelSettings" uid="uid://bvk2sr84ccost" path="res://Assets/UI/lore_name_font.tres" id="2_coop4"]
+[ext_resource type="Texture2D" uid="uid://cpwnqu2l5lwrx" path="res://Assets/Sprites/title.png" id="4_816ia"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -10,6 +13,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="IntroArt" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5whv5")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -18,18 +31,63 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -400.0
-offset_top = -400.0
+offset_top = -204.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Play"
 script = ExtResource("1_iaef4")
-target_scene = "game"
+target_scene = "intro"
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = ExtResource("2_coop4")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Credits"
 script = ExtResource("1_iaef4")
 target_scene = "credits"
+
+[node name="Label" type="Label" parent="VBoxContainer/CreditsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits"
+label_settings = ExtResource("2_coop4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 22.0
+offset_right = 1502.0
+offset_bottom = 172.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_816ia")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 205.0
+grow_vertical = 0
+text = "oIuHzoL"
+label_settings = ExtResource("2_coop4")
