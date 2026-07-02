@@ -35,7 +35,7 @@ offset_bottom = 180.0
 
 [node name="TimeLeftLabel" type="Label" parent="UpperLeftUI"]
 layout_mode = 2
-text = "Time left: 300"
+text = "Time left: 360"
 label_settings = SubResource("LabelSettings_05x41")
 clip_text = true
 

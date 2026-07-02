@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfdfdqhpqcusp"]
+[gd_scene load_steps=14 format=3 uid="uid://dfdfdqhpqcusp"]
 
 [ext_resource type="Script" uid="uid://dm7deptre4c4t" path="res://UI/ending.gd" id="1_pqvkn"]
 [ext_resource type="Texture2D" uid="uid://chqubi85f670b" path="res://Assets/Sprites/goodendingwizard.png" id="1_wq3e3"]
@@ -7,7 +7,13 @@
 [ext_resource type="LabelSettings" uid="uid://bbc7q1ar0rfb6" path="res://Assets/UI/lore_font.tres" id="3_ijv7a"]
 [ext_resource type="LabelSettings" uid="uid://bvk2sr84ccost" path="res://Assets/UI/lore_name_font.tres" id="4_e8nig"]
 [ext_resource type="Script" uid="uid://156lwj30voa8" path="res://UI/change_scene.gd" id="6_m2cnh"]
+[ext_resource type="Script" uid="uid://dd3ankc167gku" path="res://UI/time_label.gd" id="7_ucyng"]
 [ext_resource type="Texture2D" uid="uid://dddr6wagcvrdn" path="res://Assets/Shapes/square.png" id="8_foh8q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ucyng"]
+font_size = 40
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_ucyng"]
 length = 0.001
@@ -127,10 +133,12 @@ text = "Victory"
 label_settings = ExtResource("4_e8nig")
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="TimeLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Time:"
-label_settings = ExtResource("4_e8nig")
+text = "Time Remaining: 0:00"
+label_settings = SubResource("LabelSettings_ucyng")
+horizontal_alignment = 1
+script = ExtResource("7_ucyng")
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)

@@ -67,13 +67,14 @@ func unpause_game():
 func end_game(goal_reached : bool = false):
 	if game_active:
 		get_node("Tornado").remove_control()
-		timer.stop()
+		timer.paused = true
 		obstacle_manager.disconnect("all_jesters_killed", end_game)
 		game_active = false
 		get_node("AnimationPlayer").play("end_game_anim")
 		await get_node("AnimationPlayer").animation_finished
 		if goal_reached:
 			print("good ending")
+			PlayerDataManager.calculate_time_taken(timer)
 			SceneDataManager.switch_scene("good_ending")
 		else:
 			print("bad ending")
